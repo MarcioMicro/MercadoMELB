@@ -1,0 +1,6 @@
+*
+!/xampp
+/xampp/*
+!/xampp/htdocs
+!/xampp/mysql
+!/xampp/php

@@ -1,6 +1,5 @@
 *
-!/xampp
-/xampp/*
-!/xampp/htdocs
-!/xampp/mysql
-!/xampp/php
+!/xampp/htdocs/Projeto
+!/xampp/mysql/data/mercado
+
+

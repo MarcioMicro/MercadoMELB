@@ -1,5 +1,9 @@
-*
-!/xampp/htdocs/Projeto
-!/xampp/mysql/data/mercado
-
-
+/*
+!htdocs/
+htdocs/*
+!htdocs/Projeto/
+!mysql/
+mysql/*
+!mysql/data/
+mysql/data/*
+!mysql/data/mercado/

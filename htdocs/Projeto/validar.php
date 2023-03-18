@@ -23,7 +23,7 @@ $dados_usuario = mysqli_fetch_array($result);
 if ($dados_usuario['id'] == $usuario &&  $dados_usuario['senha'] == $senha) {
     $_SESSION['usuario_id'] = $usuario; 
     $_SESSION['usuario_nome'] = $dados_usuario['usuario'];
-    if ($dados_usuario['usuario'] == "Administrador") {
+    if ($dados_usuario['usuario'] == "administrador" and $dados_usuario['id'] == 1) {
         $_SESSION['admin'] = "s";
     } else {
         $_SESSION['admin'] = "n";

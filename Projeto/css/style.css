@@ -1,0 +1,42 @@
+.sidenav-azul {
+    background: #5ea1db;
+    background-size: cover;
+}
+
+.sidenav-azul .sb-sidenav-menu-heading {
+    color: #000;
+}
+
+.sidenav-azul .sb-sidenav-menu .nav .nav-link {
+    color: #f3f3f3bf;
+}
+
+.sidenav-azul .sb-sidenav-menu .nav .nav-link:hover {
+    color: #fff;
+}
+
+.sidenav-azul .sb-sidenav-footer {
+    background-color: #22275c;
+    color: #fff;
+}
+
+.navbar-azul {
+    background: #5ea1db;
+    color: #fff;
+}
+
+.navbar-azul .nav-link,
+.navbar-brand {
+    color: #fff;
+}
+
+#sidebarToggle {
+    color: #fff;
+}
+
+.form-cadastro{
+    background-color: #e9e9e9;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 7px;
+}

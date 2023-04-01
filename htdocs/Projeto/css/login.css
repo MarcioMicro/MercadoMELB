@@ -36,6 +36,9 @@
     src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
 
+.login-logo{
+    width: 50%;
+}
 
 /*//////////////////////////////////////////////////////////////////
   [ RESTYLE TAG ]*/

@@ -1,3 +1,16 @@
+*{
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-logo{
+    width: 25%;
+    display: block;
+    margin-left: 60px;
+    margin-right: auto;
+
+}
+
 .sidenav-azul {
     background: #5ea1db;
     background-size: cover;
@@ -21,7 +34,7 @@
 }
 
 .navbar-azul {
-    background: #5ea1db;
+    background: #343c89;
     color: #fff;
 }
 
@@ -32,4 +45,21 @@
 
 #sidebarToggle {
     color: #fff;
+}
+
+.form-cadastro{
+    background-color: #d4d4d4;
+    padding: 15px;
+    border-radius: 7px;
+    margin-top: 10px;
+}
+
+.buttons-cadastro{
+    margin: 15px;
+   padding: 15px;
+}
+
+.titulo-modulo{
+    font-weight: bold;
+    color: rgb(16, 70, 114);
 }

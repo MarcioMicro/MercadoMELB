@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Abr-2023 às 17:37
--- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Tempo de geração: 21-Abr-2023 às 19:48
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `melb`
 --
-CREATE DATABASE IF NOT EXISTS `melb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `melb`;
 
 -- --------------------------------------------------------
 
@@ -343,7 +341,7 @@ INSERT INTO `fornecedores` (`id`, `nome`, `cnpj`, `telefone`, `email`, `represen
 --
 
 CREATE TABLE `funcionarios` (
-  `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `cargo` varchar(45) NOT NULL,
   `departamento` varchar(45) NOT NULL,
@@ -355,7 +353,7 @@ CREATE TABLE `funcionarios` (
   `sexo` varchar(1) NOT NULL,
   `telefone` varchar(20) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
-  `senha` varchar(32) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL,
   `id_enderecos` int(11) NOT NULL,
   `naturalidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -365,26 +363,27 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`id`, `nome`, `cargo`, `departamento`, `salario`, `data_admissao`, `cpf`, `rg`, `data_nascimento`, `sexo`, `telefone`, `email`, `senha`, `id_enderecos`, `naturalidade`) VALUES
-(1001, 'João da Silva', 'Caixa', 'Financeiro', 2500.00, '2021-01-01', '111.111.111-11', '12245678', '1990-01-01', 'M', '(54) 99999-1111', 'joao.silva@email.com', 'senha123', 1, 1),
-(1002, 'Maria Oliveira', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '222.222.222-22', '23456589', '1995-02-15', 'F', '(54) 99999-2222', 'maria.oliveira@email.com', 'senha456', 2, 1),
-(1003, 'Pedro Santos', 'Auxiliar de Limpeza', 'Limpeza', 1500.00, '2021-01-01', '333.333.333-33', '34598890', '1985-07-20', 'M', '(54) 99999-3333', 'pedro.santos@email.com', 'senha789', 3, 1),
-(1004, 'Luciana Rodrigues', 'Atendente de Padaria', 'Padaria', 1800.00, '2021-01-01', '444.444.444-44', '456795801', '1998-04-10', 'F', '(54) 99999-4444', 'luciana.rodrigues@email.com', 'senha123', 4, 1),
-(1005, 'Fernando Almeida', 'Gerente de Loja', 'Gerência', 4500.00, '2021-01-01', '555.555.555-55', '56459012', '1980-11-30', 'M', '(54) 99999-5555', 'fernando.almeida@email.com', 'senha456', 5, 1),
-(1006, 'Ana Souza', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '666.666.666-66', '67870123', '1992-06-25', 'F', '(54) 99999-6666', 'ana.souza@email.com', 'senha789', 6, 2),
-(1007, 'Carlos Santos', 'Auxiliar de Estoque', 'Estoque', 1600.00, '2021-01-01', '777.777.777-77', '78461234', '1997-03-12', 'M', '(54) 99999-7777', 'carlos.santos@email.com', 'senha123', 7, 1),
-(1008, 'Mariana Lima', 'Atendente de Açougue', 'Açougue', 1900.00, '2021-01-01', '888.888.888-88', '89086345', '1996-08-08', 'F', '(54) 99999-8888', 'mariana.lima@email.com', 'senha456', 8, 1),
-(1009, 'Rafael Silva', 'Fiscal de Caixa', 'Financeiro', 2200.00, '2021-01-01', '999.999.999-99', '90121456', '1991-09-18', 'M', '(54) 99999-9999', 'rafael.silva@email.com', 'senha789', 9, 1),
-(1010, 'Isabela Santos', 'Auxiliar de Limpeza', 'Limpeza', 1500.00, '2021-01-01', '000.000.000-00', '01244567', '1994-12-05', 'F', '(54) 99999-0000', 'isabela.santos@email.com', 'senha123', 10, 1),
-(1011, 'Antônio Oliveira', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '111.111.111-10', '12367678', '1987-02-10', 'M', '(54) 99999-1111', 'antonio.oliveira@email.com', 'senha456', 11, 1),
-(1012, 'Camila Rodrigues', 'Atendente de Padaria', 'Padaria', 1800.00, '2021-01-01', '222.222.222-29', '23428789', '1999-07-15', 'F', '(54) 99999-2222', 'camila.rodrigues@email.com', 'senha789', 12, 3),
-(1013, 'Gustavo Almeida', 'Gerente de Loja', 'Gerência', 4500.00, '2021-01-01', '333.333.333-38', '34567990', '1982-04-20', 'M', '(54) 99999-3333', 'gustavo.almeida@email.com', 'senha123', 13, 1),
-(1014, 'Larissa Souza', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '444.444.444-47', '45646901', '1993-11-28', 'F', '(54) 99999-4444', 'larissa.souza@email.com', 'senha456', 14, 1),
-(1015, 'Marcos Santos', 'Auxiliar de Estoque', 'Estoque', 1600.00, '2021-01-01', '555.555.555-56', '56139012', '1996-08-17', 'M', '(54) 99999-5555', 'marcos.santos@email.com', 'senha789', 15, 1),
-(1016, 'Renata Lima', 'Atendente de Açougue', 'Açougue', 1900.00, '2021-01-01', '666.666.666-65', '67854123', '1988-05-26', 'F', '(54) 99999-6666', 'renata.lima@email.com', 'senha123', 16, 4),
-(1017, 'Leandro Silva', 'Açougueiro', 'Açougue', 2200.00, '2021-01-01', '777.777.777-74', '78471234', '1990-10-12', 'M', '(54) 99999-7777', 'leandro.silva@email.com', 'senha456', 17, 1),
-(1018, 'Marina Oliveira', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '888.888.888-83', '89069345', '1992-03-08', 'F', '(54) 99999-8888', 'marina.oliveira@email.com', 'senha789', 18, 1),
-(1019, 'Paulo Rodrigues', 'Auxiliar de Limpeza', 'Limpeza', 1500.00, '2021-01-01', '999.999.999-92', '90168456', '1995-06-25', 'M', '(54) 99999-9999', 'paulo.rodrigues@email.com', 'senha123', 19, 45),
-(1020, 'Carla Santos', 'Operador de Caixa', 'Financeiro', 2000.00, '2021-01-01', '000.000.000-01', '01247567', '1989-09-22', 'F', '(54) 99999-0000', 'carla.santos@email.com', 'senha456', 20, 1);
+(1000, 'O mestre dos magos', 'Chefão', 'Todos', '100000.00', '2021-01-01', '111.111.111-12', '12245679', '1990-01-01', 'M', '(54) 99999-1111', 'theboss@gmaile.com', '$2y$10$LzHjfGRoa3/QtMwiofLv0eUMYTd//tzofY4siNUPrPJhrFH.qdbd.', 1, 1),
+(1001, 'João da Silva', 'Caixa', 'Financeiro', '2500.00', '2021-01-01', '111.111.111-11', '12245678', '1990-01-01', 'M', '(54) 99999-1111', 'joao.silva@email.com', '$2y$10$9wb9e4RJBPtzHi.8i1VQHuRwpyi0agsuE0k4.vyB0lId4hy3LJSdS', 1, 1),
+(1002, 'Maria Oliveira', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '222.222.222-22', '23456589', '1995-02-15', 'F', '(54) 99999-2222', 'maria.oliveira@email.com', '$2y$10$9RlU9/6sI/PJrBmfwH5FW.HDqzuhVxorAB2T5srUU927KUQVS6gg2', 2, 1),
+(1003, 'Pedro Santos', 'Auxiliar de Limpeza', 'Limpeza', '1500.00', '2021-01-01', '333.333.333-33', '34598890', '1985-07-20', 'M', '(54) 99999-3333', 'pedro.santos@email.com', '$2y$10$Qa1GU.13UfkiiLFjbAzns.azs/Nr23oS87SxX6ofPvucLVfCjpjOm', 3, 1),
+(1004, 'Luciana Rodrigues', 'Atendente de Padaria', 'Padaria', '1800.00', '2021-01-01', '444.444.444-44', '456795801', '1998-04-10', 'F', '(54) 99999-4444', 'luciana.rodrigues@email.com', '$2y$10$/7SrdCsPeRFAf9FogEznVeXxBSV6t.08ED7QPaQrljHlPA2NNTwEe', 4, 1),
+(1005, 'Fernando Almeida', 'Gerente de Loja', 'Gerência', '4500.00', '2021-01-01', '555.555.555-55', '56459012', '1980-11-30', 'M', '(54) 99999-5555', 'fernando.almeida@email.com', '$2y$10$kJxc4W/D8CUCzbMg4zuJB.sYqEoi6JD1d9ZKzgCkYV8ut3LWTSnV2', 5, 1),
+(1006, 'Ana Souza', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '666.666.666-66', '67870123', '1992-06-25', 'F', '(54) 99999-6666', 'ana.souza@email.com', '$2y$10$XIcVkAI1hrjRvth.mMk0V.RGuz9pV0CwIncPDd0blBWybaoRYf1oG', 6, 2),
+(1007, 'Carlos Santos', 'Auxiliar de Estoque', 'Estoque', '1600.00', '2021-01-01', '777.777.777-77', '78461234', '1997-03-12', 'M', '(54) 99999-7777', 'carlos.santos@email.com', '$2y$10$JQ2LVOqggE/6.9MUFekd9.yrWIcSiSZ4qYsp5368xHcrE3LE31WKG', 7, 1),
+(1008, 'Mariana Lima', 'Atendente de Açougue', 'Açougue', '1900.00', '2021-01-01', '888.888.888-88', '89086345', '1996-08-08', 'F', '(54) 99999-8888', 'mariana.lima@email.com', '$2y$10$1xyn3zDA0FSBMFNVCaOxcereE.WW/DGrd1qf3shwAtaINtDKVJoe.', 8, 1),
+(1009, 'Rafael Silva', 'Fiscal de Caixa', 'Financeiro', '2200.00', '2021-01-01', '999.999.999-99', '90121456', '1991-09-18', 'M', '(54) 99999-9999', 'rafael.silva@email.com', '$2y$10$2VZlOpCbWmeppa0PEtQWd.UCEa/8GK5Ijl9OEsp.JoC/o02X7SqtK', 9, 1),
+(1010, 'Isabela Santos', 'Auxiliar de Limpeza', 'Limpeza', '1500.00', '2021-01-01', '000.000.000-00', '01244567', '1994-12-05', 'F', '(54) 99999-0000', 'isabela.santos@email.com', '$2y$10$1.KJnICySUzZ5jSgz59.guFjAhvt/eb9vMXGohSaaVnO70wG1HGIy', 10, 1),
+(1011, 'Antônio Oliveira', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '111.111.111-10', '12367678', '1987-02-10', 'M', '(54) 99999-1111', 'antonio.oliveira@email.com', '$2y$10$dVAxmgNQe3HYcv93rEwCbOBQFb2WJjv1VHDc6Xl5QcpyPan/ktGk6', 11, 1),
+(1012, 'Camila Rodrigues', 'Atendente de Padaria', 'Padaria', '1800.00', '2021-01-01', '222.222.222-29', '23428789', '1999-07-15', 'F', '(54) 99999-2222', 'camila.rodrigues@email.com', '$2y$10$MczEbz5MHvP6DHSRoF3stuufqKGq.s2IJCQNl/eIUTYJ5ghGyFP7C', 12, 3),
+(1013, 'Gustavo Almeida', 'Gerente de Loja', 'Gerência', '4500.00', '2021-01-01', '333.333.333-38', '34567990', '1982-04-20', 'M', '(54) 99999-3333', 'gustavo.almeida@email.com', '$2y$10$rxqHwbPVCMPFLRpg.KIzjeGz.TCUly9KIpiVS/MkYBNuDK/JpcHrS', 13, 1),
+(1014, 'Larissa Souza', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '444.444.444-47', '45646901', '1993-11-28', 'F', '(54) 99999-4444', 'larissa.souza@email.com', '$2y$10$UbXYqBXmDybtxkE4WkPY7uTKKvvEy0a6btZqJgHE.W1buoQwzdPFK', 14, 1),
+(1015, 'Marcos Santos', 'Auxiliar de Estoque', 'Estoque', '1600.00', '2021-01-01', '555.555.555-56', '56139012', '1996-08-17', 'M', '(54) 99999-5555', 'marcos.santos@email.com', '$2y$10$mM9Iy8UMMGvIwvRcKVqbbuph7WvJnTjn1pBMjoudeEFGUALhYncWG', 15, 1),
+(1016, 'Renata Lima', 'Atendente de Açougue', 'Açougue', '1900.00', '2021-01-01', '666.666.666-65', '67854123', '1988-05-26', 'F', '(54) 99999-6666', 'renata.lima@email.com', '$2y$10$UtYzMaA9TwHM3s7m2CtP1uEARCT15kDjA1Rmbgc/oN2vNsTcwsGVm', 16, 4),
+(1017, 'Leandro Silva', 'Açougueiro', 'Açougue', '2200.00', '2021-01-01', '777.777.777-74', '78471234', '1990-10-12', 'M', '(54) 99999-7777', 'leandro.silva@email.com', '$2y$10$AUfDRWoInPqlGdtEWvQYbOvqBfRd/zulPiidYB.1KimElp1yQElFq', 17, 1),
+(1018, 'Marina Oliveira', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '888.888.888-83', '89069345', '1992-03-08', 'F', '(54) 99999-8888', 'marina.oliveira@email.com', '$2y$10$DejP04VK15pYjgRnQCTjR.pHSR3Zj.4ZkCILp9A0N2TUoKa/J9vYa', 18, 1),
+(1019, 'Paulo Rodrigues', 'Auxiliar de Limpeza', 'Limpeza', '1500.00', '2021-01-01', '999.999.999-92', '90168456', '1995-06-25', 'M', '(54) 99999-9999', 'paulo.rodrigues@email.com', '$2y$10$RYQjzNdIIXVkmCPbG1UJXeBaBbm88p3pK5f4NJ1rB76ztg/m69lpu', 19, 45),
+(1020, 'Carla Santos', 'Operador de Caixa', 'Financeiro', '2000.00', '2021-01-01', '000.000.000-01', '01247567', '1989-09-22', 'F', '(54) 99999-0000', 'carla.santos@email.com', '$2y$10$BjnzE74FBn3X1lPSsYlxzOoTdSJmriQFSkehY/zEiSczrrw4tGhfe', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -431,58 +430,58 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `marca`, `preco_venda`, `embalagem`, `cod_barras`, `estoque`, `unidade`, `id_categorias`) VALUES
-(1, 'Refrigerante Coca-Cola', 'Coca-Cola', 9.99, 'Garrafa 2L', '7894900011018', 100.000, 'un', 1),
-(2, 'Suco de Laranja Natural', 'Naturale', 3.49, 'Garrafa 1L', '7891234567890', 50.000, 'un', 1),
-(3, 'Água Mineral sem Gás', 'Crystal', 1.99, 'Garrafa 500ml', '7890124386789', 200.000, 'un', 1),
-(4, 'Carne Bovina Filé Mignon', 'Frigor', 24.99, 'Peça 1kg', '7897654321098', 30.000, 'kg', 2),
-(5, 'Carne Suína Lombo', 'Seara', 19.99, 'Peça 1kg', '7899878943210', 25.000, 'kg', 2),
-(6, 'Frango Empanado', 'Sadia', 12.99, 'Pacote 500g', '7892375678901', 40.000, 'kg', 2),
-(7, 'Leite Integral', 'Nestlé', 2.49, 'Caixa 1L', '7893456762012', 100.000, 'un', 3),
-(8, 'Queijo Mussarela', 'Tirolez', 6.99, 'Pacote 200g', '7894567826123', 80.000, 'un', 3),
-(9, 'Iogurte Natural', 'Danone', 1.99, 'Pote 170g', '7895678191234', 150.000, 'un', 3),
-(10, 'Pão Francês', 'Padaria do Bairro', 0.99, 'Unidade', '7896786712345', 200.000, 'un', 4),
-(11, 'Bolo de Chocolate', 'Confeitaria Delícia', 15.99, 'Unidade', '7897890145456', 20.000, 'un', 4),
-(12, 'Torta de Frango', 'Padaria Central', 22.99, 'Unidade', '7898901564567', 15.000, 'un', 4),
-(13, 'Maçã', 'Frutinha', 1.49, 'Unidade', '7899015845678', 100.000, 'un', 5),
-(14, 'Cenoura', 'Verdinho', 0.99, 'Unidade', '7890125256789', 80.000, 'un', 5),
-(15, 'Alface Crespa', 'Verdão', 1.99, 'Unidade', '7891234167890', 70.000, 'un', 5),
-(16, 'Detergente Líquido', 'Ypê', 2.99, 'Garrafa 500ml', '7892345368901', 50.000, 'un', 6),
-(17, 'Sabonete em Barra', 'Dove', 1.49, 'Unidade', '7893456716012', 100.000, 'un', 7),
-(18, 'Shampoo Anticaspa', 'Head & Shoulders', 9.99, 'Frasco 400ml', '7894567843123', 30.000, 'un', 7),
-(19, 'Pasta de Dente', 'Colgate', 3.49, 'Tubo 90g', '7895678461234', 80.000, 'un', 7),
-(20, 'Papel Higiênico', 'Neve', 7.99, 'Pacote 12 rolos', '7896789012345', 40.000, 'un', 7),
-(21, 'Coca-Cola', 'Coca-Cola', 3.99, 'Lata', '789490001', 100.000, 'un', 1),
-(22, 'Frango inteiro', 'AviPampa', 9.99, 'Embalagem plástica', '789445002', 50.000, 'un', 2),
-(23, 'Queijo cheddar', 'Queijos do Sul', 5.49, 'Pacote', '789494203', 20.000, 'un', 3),
-(24, 'Pão de forma integral', 'Padaria Nutrição', 3.29, 'Pacote', '789495404', 30.000, 'un', 4),
-(25, 'Maçã', 'Frutas do Vale', 1.99, 'Kg', '789496505', 100.000, 'kg', 5),
-(26, 'Sabão em pó', 'LimpezAção', 6.99, 'Caixa', '789497506', 40.000, 'un', 6),
-(27, 'Shampoo', 'Cabelos Incríveis', 8.99, 'Frasco', '789498507', 25.000, 'un', 7),
-(28, 'Pizza de Calabresa', 'Saborosa Pizzas', 12.99, 'Unidade', '789495908', 10.000, 'un', 8),
-(29, 'Granola', 'Natureza Saudável', 4.49, 'Pacote', '789465009', 15.000, 'un', 9),
-(30, 'Molho de Tomate', 'Saboroso Molhos', 2.99, 'Vidro', '789425010', 50.000, 'un', 10),
-(31, 'Bolacha recheada', 'Delícias da Infância', 1.49, 'Pacote', '789415011', 100.000, 'un', 11),
-(32, 'Chocolate ao Leite', 'Chocolates Deliciosos', 4.99, 'Barra', '789453012', 30.000, 'un', 12),
-(33, 'Fralda Pampers', 'Cuidado do Bebê', 19.99, 'Pacote', '789497513', 40.000, 'un', 13),
-(34, 'Ração para cães', 'Pet\'s Felizes', 14.99, 'Pacote', '789498514', 20.000, 'un', 14),
-(35, 'Refrigerante Pepsi', 'PepsiCo', 3.49, 'Lata', '789495915', 50.000, 'un', 1),
-(36, 'Coxas de frango', 'AviFrango', 6.99, 'Embalagem plástica', '789494616', 30.000, 'un', 2),
-(37, 'Sabonete Líquido', 'Dove', 8.99, '250ml', '7891234167891', 120.500, 'un', 7),
-(38, 'Leite em Pó Integral', 'Ninho', 19.99, '800g', '7894561234894', 30.250, 'kg', 3),
-(39, 'Suco de Laranja', 'Del Valle', 4.99, '1L', '7897824234567', 150.750, 'ml', 1),
-(40, 'Carne Moída', 'Friboi', 14.99, '500g', '7899876543210', 80.000, 'kg', 2),
-(41, 'Bolo de Chocolate', 'Padaria do João', 25.99, '1 un', '7896547346543', 10.000, 'un', 4),
-(42, 'Shampoo Anticaspa', 'Head & Shoulders', 12.99, '400ml', '7897897849897', 60.500, 'ml', 7),
-(43, 'Pizza de Calabresa', 'Hut Pizza', 29.99, '500g', '7896543857899', 20.000, 'un', 8),
-(44, 'Aveia em Flocos', 'Quaker', 6.99, '200g', '7891234867891', 100.250, 'g', 9),
-(45, 'Molho de Tomate', 'Predilecta', 2.99, '340g', '7897896791234', 200.000, 'g', 10),
-(46, 'Bolacha Recheada', 'Oreo', 4.99, '90g', '7894561246894', 150.500, 'g', 11),
-(47, 'Chocolate ao Leite', 'Nestlé', 3.99, '80g', '7899876542610', 100.000, 'g', 12),
-(48, 'Fralda Descartável', 'Pampers', 34.99, 'M', '7897897257897', 50.000, 'un', 13),
-(49, 'Ração para Cães', 'Pedigree', 29.99, '1kg', '7896545896543', 30.250, 'kg', 14),
-(50, 'Refrigerante de Guaraná', 'Antarctica', 3.99, '2L', '7891298567891', 100.500, 'ml', 1),
-(51, 'Carne de Frango', 'Sadia', 12.99, '1kg', '78978975597897', 40.000, 'kg', 2),
-(52, 'Pão de Forma Integral', 'Wickbold', 5.99, '500g', '7899874643210', 60.250, 'g', 4);
+(1, 'Refrigerante Coca-Cola', 'Coca-Cola', '9.99', 'Garrafa 2L', '7894900011018', '100.000', 'un', 1),
+(2, 'Suco de Laranja Natural', 'Naturale', '3.49', 'Garrafa 1L', '7891234567890', '50.000', 'un', 1),
+(3, 'Água Mineral sem Gás', 'Crystal', '1.99', 'Garrafa 500ml', '7890124386789', '200.000', 'un', 1),
+(4, 'Carne Bovina Filé Mignon', 'Frigor', '24.99', 'Peça 1kg', '7897654321098', '30.000', 'kg', 2),
+(5, 'Carne Suína Lombo', 'Seara', '19.99', 'Peça 1kg', '7899878943210', '25.000', 'kg', 2),
+(6, 'Frango Empanado', 'Sadia', '12.99', 'Pacote 500g', '7892375678901', '40.000', 'kg', 2),
+(7, 'Leite Integral', 'Nestlé', '2.49', 'Caixa 1L', '7893456762012', '100.000', 'un', 3),
+(8, 'Queijo Mussarela', 'Tirolez', '6.99', 'Pacote 200g', '7894567826123', '80.000', 'un', 3),
+(9, 'Iogurte Natural', 'Danone', '1.99', 'Pote 170g', '7895678191234', '150.000', 'un', 3),
+(10, 'Pão Francês', 'Padaria do Bairro', '0.99', 'Unidade', '7896786712345', '200.000', 'un', 4),
+(11, 'Bolo de Chocolate', 'Confeitaria Delícia', '15.99', 'Unidade', '7897890145456', '20.000', 'un', 4),
+(12, 'Torta de Frango', 'Padaria Central', '22.99', 'Unidade', '7898901564567', '15.000', 'un', 4),
+(13, 'Maçã', 'Frutinha', '1.49', 'Unidade', '7899015845678', '100.000', 'un', 5),
+(14, 'Cenoura', 'Verdinho', '0.99', 'Unidade', '7890125256789', '80.000', 'un', 5),
+(15, 'Alface Crespa', 'Verdão', '1.99', 'Unidade', '7891234167890', '70.000', 'un', 5),
+(16, 'Detergente Líquido', 'Ypê', '2.99', 'Garrafa 500ml', '7892345368901', '50.000', 'un', 6),
+(17, 'Sabonete em Barra', 'Dove', '1.49', 'Unidade', '7893456716012', '100.000', 'un', 7),
+(18, 'Shampoo Anticaspa', 'Head & Shoulders', '9.99', 'Frasco 400ml', '7894567843123', '30.000', 'un', 7),
+(19, 'Pasta de Dente', 'Colgate', '3.49', 'Tubo 90g', '7895678461234', '80.000', 'un', 7),
+(20, 'Papel Higiênico', 'Neve', '7.99', 'Pacote 12 rolos', '7896789012345', '40.000', 'un', 7),
+(21, 'Coca-Cola', 'Coca-Cola', '3.99', 'Lata', '789490001', '100.000', 'un', 1),
+(22, 'Frango inteiro', 'AviPampa', '9.99', 'Embalagem plástica', '789445002', '50.000', 'un', 2),
+(23, 'Queijo cheddar', 'Queijos do Sul', '5.49', 'Pacote', '789494203', '20.000', 'un', 3),
+(24, 'Pão de forma integral', 'Padaria Nutrição', '3.29', 'Pacote', '789495404', '30.000', 'un', 4),
+(25, 'Maçã', 'Frutas do Vale', '1.99', 'Kg', '789496505', '100.000', 'kg', 5),
+(26, 'Sabão em pó', 'LimpezAção', '6.99', 'Caixa', '789497506', '40.000', 'un', 6),
+(27, 'Shampoo', 'Cabelos Incríveis', '8.99', 'Frasco', '789498507', '25.000', 'un', 7),
+(28, 'Pizza de Calabresa', 'Saborosa Pizzas', '12.99', 'Unidade', '789495908', '10.000', 'un', 8),
+(29, 'Granola', 'Natureza Saudável', '4.49', 'Pacote', '789465009', '15.000', 'un', 9),
+(30, 'Molho de Tomate', 'Saboroso Molhos', '2.99', 'Vidro', '789425010', '50.000', 'un', 10),
+(31, 'Bolacha recheada', 'Delícias da Infância', '1.49', 'Pacote', '789415011', '100.000', 'un', 11),
+(32, 'Chocolate ao Leite', 'Chocolates Deliciosos', '4.99', 'Barra', '789453012', '30.000', 'un', 12),
+(33, 'Fralda Pampers', 'Cuidado do Bebê', '19.99', 'Pacote', '789497513', '40.000', 'un', 13),
+(34, 'Ração para cães', 'Pet\'s Felizes', '14.99', 'Pacote', '789498514', '20.000', 'un', 14),
+(35, 'Refrigerante Pepsi', 'PepsiCo', '3.49', 'Lata', '789495915', '50.000', 'un', 1),
+(36, 'Coxas de frango', 'AviFrango', '6.99', 'Embalagem plástica', '789494616', '30.000', 'un', 2),
+(37, 'Sabonete Líquido', 'Dove', '8.99', '250ml', '7891234167891', '120.500', 'un', 7),
+(38, 'Leite em Pó Integral', 'Ninho', '19.99', '800g', '7894561234894', '30.250', 'kg', 3),
+(39, 'Suco de Laranja', 'Del Valle', '4.99', '1L', '7897824234567', '150.750', 'ml', 1),
+(40, 'Carne Moída', 'Friboi', '14.99', '500g', '7899876543210', '80.000', 'kg', 2),
+(41, 'Bolo de Chocolate', 'Padaria do João', '25.99', '1 un', '7896547346543', '10.000', 'un', 4),
+(42, 'Shampoo Anticaspa', 'Head & Shoulders', '12.99', '400ml', '7897897849897', '60.500', 'ml', 7),
+(43, 'Pizza de Calabresa', 'Hut Pizza', '29.99', '500g', '7896543857899', '20.000', 'un', 8),
+(44, 'Aveia em Flocos', 'Quaker', '6.99', '200g', '7891234867891', '100.250', 'g', 9),
+(45, 'Molho de Tomate', 'Predilecta', '2.99', '340g', '7897896791234', '200.000', 'g', 10),
+(46, 'Bolacha Recheada', 'Oreo', '4.99', '90g', '7894561246894', '150.500', 'g', 11),
+(47, 'Chocolate ao Leite', 'Nestlé', '3.99', '80g', '7899876542610', '100.000', 'g', 12),
+(48, 'Fralda Descartável', 'Pampers', '34.99', 'M', '7897897257897', '50.000', 'un', 13),
+(49, 'Ração para Cães', 'Pedigree', '29.99', '1kg', '7896545896543', '30.250', 'kg', 14),
+(50, 'Refrigerante de Guaraná', 'Antarctica', '3.99', '2L', '7891298567891', '100.500', 'ml', 1),
+(51, 'Carne de Frango', 'Sadia', '12.99', '1kg', '78978975597897', '40.000', 'kg', 2),
+(52, 'Pão de Forma Integral', 'Wickbold', '5.99', '500g', '7899874643210', '60.250', 'g', 4);
 
 -- --------------------------------------------------------
 
@@ -583,12 +582,13 @@ ALTER TABLE `fornecedores`
 -- Índices para tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `cpf` (`cpf`),
   ADD UNIQUE KEY `rg` (`rg`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `fk_Funcionario_enderecos1` (`id_enderecos`),
   ADD KEY `fk_Funcionario_cidades1` (`naturalidade`);
- 
+
 --
 -- Índices para tabela `niveis_acesso`
 --
@@ -677,6 +677,12 @@ ALTER TABLE `enderecos`
 --
 ALTER TABLE `fornecedores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT de tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1021;
 
 --
 -- AUTO_INCREMENT de tabela `vendas`

@@ -1,14 +1,11 @@
-*{
+* {
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
     font-family: 'Roboto', sans-serif;
 }
 
-.login-logo{
-    width: 25%;
+.login-logo {
     display: block;
-    margin-left: 60px;
-    margin-right: auto;
-
+    height: 100px;
 }
 
 .sidenav-azul {
@@ -47,19 +44,19 @@
     color: #fff;
 }
 
-.form-cadastro{
+.form-cadastro {
     background-color: #d4d4d4;
     padding: 15px;
     border-radius: 7px;
     margin-top: 10px;
 }
 
-.buttons-cadastro{
+.buttons-cadastro {
     margin: 15px;
-   padding: 15px;
+    padding: 15px;
 }
 
-.titulo-modulo{
+.titulo-modulo {
     font-weight: bold;
     color: rgb(16, 70, 114);
 }

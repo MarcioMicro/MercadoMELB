@@ -4,48 +4,70 @@ session_name('mercado');
 session_start();
 
 include "includes/cabecalho.php";
+include "includes/conect.php";
 
+$query = "SELECT id,nome,marca,preco_venda,embalagem,estoque,unidade FROM produtos";
+
+$sql_query_produtos =mysqli_query($conect,$query);
+$num_result=mysqli_num_rows($sql_query_produtos);
 
 ?>
 
-<link rel="stylesheet" href="css/pag_estoque.css">
+<div class="container-fluid">
 
-<div class="container">
-    <div class="row">
         <div class="col-md-12 listagem-produtos">
-            <h2>Produtos em estoque</h2>
-                <table class="table">
+        <h1 class="mt-4">Produtos em Estoque</h1>
+                      <br>
+                      <div class="card">
+                        <div class="card-body">
+                        <div class="row">
+                <table class="table table table-bordered table-hover" id="produtos">
                     <thead>
                         <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Valor</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Preço de Venda</th>
+                        <th scope="col">Quantidade em Estoque</th>
+                        <th scope="col">Unidade</th>
+                        <th scope="col">Embalagem</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if($num_result == 0){ ?>
+                      
                         <tr>
-                        <th scope="row">1</th>
-                            <td>Arroz</td>
-                            <td>120</td>
-                            <td>R$150,00</td>
+                            <td colspan="7">Não existem produtos cadastrados</td>
                         </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                            <td>Feijão</td>
-                            <td>10</td>
-                            <td>R$140,00</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                            <td>Batata</td>
-                            <td>900</td>
-                            <td>R$190,00</td>
-                        </tr>
+                  <?php  
+                    } else{ 
+                        while($dados = mysqli_fetch_array($sql_query_produtos)){
+                   ?> 
+                            <tr>
+                            <th scope="row"><?php print $dados['id']; ?></th>
+                            <td><?php print $dados['nome']; ?></td>
+                            <td><?php print $dados['marca']; ?></td>
+                            <td><?php print $dados['preco_venda']; ?></td>
+                            <td><?php print $dados['embalagem']; ?></td>
+                            <td><?php print $dados['estoque']; ?></td>
+                            <td><?php print $dados['unidade']; ?></td>
+                            </tr>
+                         <?php
+                                }       
+                             }
+                            ?>  
                     </tbody>
                 </table>
+        </div>
+        </div>
         </div>
     </div>
 
 
 </div>
+
+<script>
+$(document).ready(function () {
+    $('#produtos').DataTable();
+});
+</script>

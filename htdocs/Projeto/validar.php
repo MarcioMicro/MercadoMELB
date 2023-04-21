@@ -6,10 +6,13 @@ session_start();
 
  
 $usuario = $_POST['id_usuario'];
-$senha = md5($_POST['senha_usuario']);
+$senha = ($_POST['senha_usuario']);
 
 
-$query = "SELECT id, usuario, senha FROM usuario WHERE id = ".$_POST['id_usuario']." AND senha = '".$senha."'";
+$query = "SELECT id, nome, senha FROM funcionarios WHERE id = ".$_POST['id_usuario']." ";
+
+
+print $query;
 
 $result = mysqli_query($conect, $query);
 
@@ -20,7 +23,7 @@ if ($num_rows >= 1 ) {
 $dados_usuario = mysqli_fetch_array($result);
 
 
-if ($dados_usuario['id'] == $usuario &&  $dados_usuario['senha'] == $senha) {
+if ($dados_usuario['id'] == $usuario &&  password_verify($senha,$dados_usuario['senha'])) {
     $_SESSION['usuario_id'] = $usuario; 
     $_SESSION['usuario_nome'] = $dados_usuario['usuario'];
     if ($dados_usuario['usuario'] == "administrador" and $dados_usuario['id'] == 1) {
@@ -61,4 +64,11 @@ if ($dados_usuario['id'] == $usuario &&  $dados_usuario['senha'] == $senha) {
 
 
 
+?>
+
+<?php
+// usuario = 1000
+// senha = 1234
+// usuario = 1001
+// senha = senha123
 ?>

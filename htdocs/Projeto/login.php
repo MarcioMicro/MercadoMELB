@@ -11,6 +11,10 @@
 <script src="js/sweetalert2.all.min.js"></script>
 <script src="https://kit.fontawesome.com/10a6d5e523.js" crossorigin="anonymous"></script>
 
+<?php
+// usuario = 1001
+// senha = senha123
+?>
 
 <body class="bg-gradiente-login">
     <div class="container ">

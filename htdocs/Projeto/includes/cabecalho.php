@@ -2,13 +2,15 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bs-admin.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
 <script src="js/Chart.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
-
+<script src="js/jquery.dataTables.min"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://kit.fontawesome.com/10a6d5e523.js" crossorigin="anonymous"></script>
 <script src="https://www.uricer.edu.br/cmw/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
 <meta charset="iso-8859-1">
 
 

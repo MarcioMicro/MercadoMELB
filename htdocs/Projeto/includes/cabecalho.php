@@ -2,15 +2,16 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bs-admin.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel = "stylesheet" href="css/jquery.dataTables.min.css">
 <script src="js/Chart.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
-<script src="js/jquery.dataTables.min"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://kit.fontawesome.com/10a6d5e523.js" crossorigin="anonymous"></script>
-<script src="https://www.uricer.edu.br/cmw/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap5.min.js"></script>
+<meta charset="iso-8859-1">
+
 <meta charset="iso-8859-1">
 
 
@@ -26,31 +27,14 @@
 </style>
 
 <body class="sb-nav-fixed">
-  <nav class="sb-topnav navbar navbar-expand navbar-azul">
 
-    <a class="navbar-brand ps-3" href="projeto_inicio.php"><img src="images/logo_melb.png" class="login-logo"></a>
-
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i> </button>
-<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></div>
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i><?php print ucfirst($_SESSION['usuario_nome']) ?></a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-         
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="includes/encerrar_sessao.php">Finalizar</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
 
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
       <nav class="sb-sidenav accordion sidenav-azul" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
           <div class="nav">
+          <a class="navbar-brand d-flex justify-content-center" href="projeto_inicio.php"><img src="images/logo_melb.png" class="login-logo"></a>
             <div class="sb-sidenav-menu-heading">Modulos</div>
             <a class="nav-link" href="pag_cadastro_func.php">
               <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
@@ -86,3 +70,21 @@
       </nav>
     </div>
     <div id="layoutSidenav_content">
+    <nav class="sb-topnav navbar navbar-expand navbar-azul">
+
+
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 ms-5" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i> </button>
+<div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></div>
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i><?php print ucfirst($_SESSION['usuario_nome']) ?></a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+         
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="includes/encerrar_sessao.php">Finalizar</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>

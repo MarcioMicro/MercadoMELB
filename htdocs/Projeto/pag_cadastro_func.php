@@ -153,6 +153,8 @@ include "includes/cabecalho.php";
 
 <script>
     verifica = () => {
-        if 
+        if ("nada") {
+
+        }
     }
 </script>

@@ -12,7 +12,7 @@ $sql_query_produtos =mysqli_query($conect,$query);
 $num_result=mysqli_num_rows($sql_query_produtos);
 
 ?>
-
+<main>
 <div class="container-fluid">
 
         <div class="col-md-12 listagem-produtos">
@@ -65,7 +65,7 @@ $num_result=mysqli_num_rows($sql_query_produtos);
 
 
 </div>
-
+                            </main>
 <script>
 $(document).ready(function () {
     $('#produtos').DataTable();

@@ -12,7 +12,7 @@ $senha = ($_POST['senha_usuario']);
 $query = "SELECT id, nome, senha FROM funcionarios WHERE id = ".$_POST['id_usuario']." ";
 
 
-print $query;
+//print $query;
 
 $result = mysqli_query($conect, $query);
 
@@ -25,8 +25,9 @@ $dados_usuario = mysqli_fetch_array($result);
 
 if ($dados_usuario['id'] == $usuario &&  password_verify($senha,$dados_usuario['senha'])) {
     $_SESSION['usuario_id'] = $usuario; 
-    $_SESSION['usuario_nome'] = $dados_usuario['usuario'];
-    if ($dados_usuario['usuario'] == "administrador" and $dados_usuario['id'] == 1) {
+    $_SESSION['usuario_nome'] = $dados_usuario['nome'];
+   
+    if ($dados_usuario['nome'] == "O mestre dos magos" and $dados_usuario['id'] == 1000) {
         $_SESSION['admin'] = "s";
     } else {
         $_SESSION['admin'] = "n";

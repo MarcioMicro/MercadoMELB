@@ -6,7 +6,7 @@
 <script src="js/Chart.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="js/sweetalert2.all.min.js"></script>
 <script src="https://kit.fontawesome.com/10a6d5e523.js" crossorigin="anonymous"></script>
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>

@@ -5,6 +5,5 @@ error_reporting(0);
 session_name("mercado");
 session_start();
 session_destroy();
-//unset( $_SESSION, $_POST, $_GET );
 include "login.php"; ?>
 </meta>

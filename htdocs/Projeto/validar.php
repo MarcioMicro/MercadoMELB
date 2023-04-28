@@ -72,4 +72,6 @@ if ($dados_usuario['id'] == $usuario &&  password_verify($senha,$dados_usuario['
 // senha = 1234
 // usuario = 1001
 // senha = senha123
+
+password_hash($senha, default);
 ?>

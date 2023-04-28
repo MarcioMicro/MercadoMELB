@@ -21,7 +21,7 @@ $num_result=mysqli_num_rows($sql_query_produtos);
                       <div class="card">
                         <div class="card-body">
                         <div class="row">
-                <table class="table table table-bordered table-hover" id="produtos">
+                <table class="table table table-bordered table-hover" id="dados">
                     <thead>
                         <tr>
                         <th scope="col">Id</th>
@@ -66,8 +66,3 @@ $num_result=mysqli_num_rows($sql_query_produtos);
 
 </div>
                             </main>
-<script>
-$(document).ready(function () {
-    $('#produtos').DataTable();
-});
-</script>

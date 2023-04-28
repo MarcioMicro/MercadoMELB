@@ -39,7 +39,7 @@ include "includes/cabecalho.php"; ?>
 $sql_query_produtos =mysqli_query($conect,$query);
 $num_result=mysqli_num_rows($sql_query_produtos); 
 ?>
-                            <table class="table table table-bordered table-hover" id="funcionarios">
+                            <table class="table table table-bordered table-hover" id="dados">
                     <thead>
                         <tr>
                         <th scope="col">Id</th>
@@ -107,8 +107,5 @@ new Chart("myChart", {
       display: false
     }
   }
-});
-$(document).ready(function () {
-    $('#funcionarios').DataTable();
 });
 </script>

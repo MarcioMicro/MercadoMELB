@@ -103,31 +103,31 @@ include "includes/cabecalho.php";
         return (false);
     }
 
-    if (document.cadastro.preco_prod.value == "" || document.cadastro.preco_prod.value.length < 14) {
+    if (document.cadastro.preco_prod.value < 0) {
         document.cadastro.preco_prod.focus();
         Swal.fire("", "Favor verificar o campo preço produto!", "warning");
         return (false);
     }
 
-    if (document.cadastro.embalagem_prod.value == "nada") {
+    if (document.cadastro.embalagem_prod.value == "") {
         document.cadastro.embalagem_prod.focus();
         Swal.fire("", "Favor verificar o campo embalagem!", "warning");
         return (false);
     }	
 
-    if (document.cadastro.codBarras_prod.value != "selecione") {
+    if (document.cadastro.codBarras_prod.value <=12 || document.cadastro.codBarras_prod.value > 13 ) {
         document.cadastro.codBarras_prod.focus();
         Swal.fire("", "Favor verificar o campo código de barras!", "warning");
         return (false);
     }
     
-    if (document.cadastro.estoque_prod.value == "" || document.cadastro.estoque_prod.value.length <= 3) {
+    if (document.cadastro.estoque_prod.value < 0 || document.cadastro.estoque_prod.value.length == "") {
         document.cadastro.estoque_prod.focus();
         Swal.fire("", "Favor verificar o campo estoque!", "warning");
         return (false);
     }
 
-    if (document.cadastro.unidade_prod.value == "" || document.cadastro.unidade_prod.value.length <= 3) {
+    if (document.cadastro.unidade_prod.value == "Seleciona") {
         document.cadastro.unidade_prod.focus();
         Swal.fire("", "Favor escolher alguma das opções!", "warning");
         return (false);

@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="css/bs-admin.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="css/select2.min.css">
+<link rel="stylesheet" href="css/select2-bootstrap-5-theme.min.css">
 <script src="js/Chart.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
@@ -11,10 +13,16 @@
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>
 <script src="js/jquery.mask.min.js"></script>
+<script src="js/select2.full.min.js"></script>
+<script src="js/pt-BR.js"></script>
+<script src="js/jquery.maskMoney.min.js"></script>
 <meta charset="iso-8859-1">
 <meta charset="iso-8859-1">
 
 <?php
+error_reporting(0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 include "includes/conect.php";
 $id_func = $_SESSION['usuario_id'];
 
@@ -144,5 +152,14 @@ $sql_query_acesso = mysqli_query($conect, $query);
               }
             }
           });
+
+          $('select').select2({
+            theme: 'bootstrap-5',
+            language: "pt-BR"
+              
+            
+          });
+
+          $('#salario_func').maskMoney({prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
         });
       </script>

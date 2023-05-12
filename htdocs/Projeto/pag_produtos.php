@@ -91,48 +91,88 @@ include "includes/cabecalho.php";
     verifica = () => {
 	
 		
-    if (document.cadastro.nome_prod.value == "" || document.cadastro.nome_prod.value.length <= 3){
-        document.cadastro.nome_prod.focus();
+    if (document.cadastro.nome_func.value == "" || document.cadastro.nome_func.value.length <= 3){
+        document.cadastro.nome_func.focus();
         Swal.fire("", "Favor verificar o campo Nome!", "warning");
         return (false);
     }
 
-    if (document.cadastro.marca_prod.value == "") {
-        document.cadastro.marca_prod.focus();
-        Swal.fire("", "Favor inserir uma marca válida!", "warning");
+    if (document.cadastro.cpf_func.value == "") {
+        document.cadastro.cpf_func.focus();
+        Swal.fire("", "Favor inserir um CPF válido!", "warning");
         return (false);
     }
 
-    if (document.cadastro.preco_prod.value < 0) {
-        document.cadastro.preco_prod.focus();
-        Swal.fire("", "Favor verificar o campo preço produto!", "warning");
+    if (document.cadastro.rg_func.value == "" || document.cadastro.rg_func.value.length < 14) {
+        document.cadastro.rg_func.focus();
+        Swal.fire("", "Favor verificar com campo Telefone!", "warning");
         return (false);
     }
 
-    if (document.cadastro.embalagem_prod.value == "") {
-        document.cadastro.embalagem_prod.focus();
-        Swal.fire("", "Favor verificar o campo embalagem!", "warning");
+    if (document.cadastro.nascimento.func.value == "nada") {
+        document.cadastro.nascimento.func.focus();
+        Swal.fire("", "O campo Forma de Ingresso não pode estar em branco!", "warning");
         return (false);
     }	
 
-    if (document.cadastro.codBarras_prod.value <=12 || document.cadastro.codBarras_prod.value > 13 ) {
-        document.cadastro.codBarras_prod.focus();
-        Swal.fire("", "Favor verificar o campo código de barras!", "warning");
+    if (document.cadastro.sexo_func.value != "selecione") {
+        document.cadastro.sexo_func.focus();
+        Swal.fire("", "O campo Percentual não pode ser zero!", "warning");
         return (false);
     }
     
-    if (document.cadastro.estoque_prod.value < 0 || document.cadastro.estoque_prod.value.length == "") {
-        document.cadastro.estoque_prod.focus();
-        Swal.fire("", "Favor verificar o campo estoque!", "warning");
+    if (document.cadastro.naturalidade.value == "" || document.cadastro.naturalidade.value.length <= 3) {
+        document.cadastro.naturalidade.focus();
+        Swal.fire("", "Favor verificar o campo Instituição anterior ou atual!", "warning");
         return (false);
     }
 
-    if (document.cadastro.unidade_prod.value == "Seleciona") {
-        document.cadastro.unidade_prod.focus();
-        Swal.fire("", "Favor escolher alguma das opções!", "warning");
+    if (document.cadastro.endereco.value == "" || document.cadastro.endereco.value.length <= 3) {
+        document.cadastro.endereco.focus();
+        Swal.fire("", "Favor verificar o campo Curso anterior ou atual!", "warning");
         return (false);
     }
     
+    if (document.cadastro.nivel_ensino_func.value == "") {
+        document.cadastro.nivel_ensino_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.celular_func.value == "") {
+        document.cadastro.celular_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.email_func.value == "") {
+        document.cadastro.email_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.senha_func.value == "") {
+        document.cadastro.senha_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.obs_func.value == "") {
+        document.cadastro.obs_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.efetivacao_func.value == "") {
+        document.cadastro.efetivacao_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.departamento_func.value == "") {
+        document.cadastro.departamento_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
+    if (document.cadastro.cargo_func.value == "") {
+        document.cadastro.cargo_func.focus();
+        Swal.fire("", "Favor selecionar Qual o curso pretendido!", "warning");
+        return (false);
+    }
     else{
         Swal.fire("", "Deu bom", "");
     }

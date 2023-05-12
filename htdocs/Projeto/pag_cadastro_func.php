@@ -45,7 +45,7 @@ include "includes/cabecalho.php";
         <div class="col-md-3">
             <label for="sexo_func" class="form-label">Sexo</label>
             <select class="form-select" aria-label="Default select example" id="sexo_func" name="sexo_func">
-                <option selected>Seleciona</options>    
+                <option selected value="">Seleciona</options>    
                 <option value="F">Feminino</options>
                 <option value="M">Masculino</options>
             </select>
@@ -64,7 +64,7 @@ include "includes/cabecalho.php";
         <div class="col-md-5">
         <label for="nivel_ensino_func" class="form-label">Nível de Ensino</label>
              <select class="form-select" aria-label="Default select example" name = "nivel_ensino_func" id = "nivel_ensino_func">
-                <option selected>Selecione</option>
+                <option selected value="">Selecione</option>
                 <option value="Ensino Fundamental Incompleto">Ensino fundamental incompleto</option>
                 <option value="Ensino Fundamental Completo">Ensino fundamental completo</option>
                 <option value="Ensino Fundamental Andamento">Ensino fundamental em andamento</option>
@@ -82,7 +82,7 @@ include "includes/cabecalho.php";
         </div>
         <div class="col-md-3">
             <label for="email_func" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email_func" name = "email_func">
+            <input type="email" class="form-control" id="email_func" name = "email_func" onblur="validacaoEmail(cadastro.email)">
         </div>
         </div>
 </div>
@@ -121,13 +121,6 @@ include "includes/cabecalho.php";
             <input type="text" class="form-control" id="senha_func" name = "senha_func">
         </div>
 </div>
-<div class = "row" style="padding: 10px;">
-        <div class="col-md-12">
-                <label for="obs_func" class="form-label">Observações</label>
-                <textarea class="form-control" id="obs_func" rows="3" name = "obs_func"></textarea>
-        </div>
-
-        </div>
         <p>&nbsp;</p>
     <div class="row buttons-cadastro">
 
@@ -161,21 +154,21 @@ include "includes/cabecalho.php";
         return (false);
     }
 
-    if (document.cadastro.cpf_func.value == "") {
+    if (document.cadastro.cpf_func.value == "" || document.cadastro.cpf_func.value.length != 14) {
         document.cadastro.cpf_func.focus();
         Swal.fire("", "Favor inserir um CPF válido!", "warning");
         return (false);
     }
 
-    if (document.cadastro.rg_func.value == "" || document.cadastro.rg_func.value.length < 14) {
+    if (document.cadastro.rg_func.value == "" || document.cadastro.rg_func.value.length != 10) {
         document.cadastro.rg_func.focus();
-        Swal.fire("", "Favor verificar com campo Telefone!", "warning");
+        Swal.fire("", "Favor verificar com campo RG!", "warning");
         return (false);
     }
 
-    if (document.cadastro.nascimento.func.value == "nada") {
+    if (document.cadastro.nascimento.func.value == "") {
         document.cadastro.nascimento.func.focus();
-        Swal.fire("", "O campo Forma de Ingresso não pode estar em branco!", "warning");
+        Swal.fire("", "Favor verifique o campo Data de Nascimento", "warning");
         return (false);
     }	
 
@@ -241,4 +234,131 @@ include "includes/cabecalho.php";
         Swal.fire("", "Deu bom", "");
     }
 }
+
+			function validacaoEmail(field) {
+				usuario = field.value.substring(0, field.value.indexOf("@"));
+				dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+				if ((usuario.length >=1) &&
+					(dominio.length >=3) &&
+					(usuario.search("@")==-1) &&
+					(dominio.search("@")==-1) &&
+					(usuario.search(" ")==-1) &&
+					(dominio.search(" ")==-1) &&
+					(dominio.search(".")!=-1) &&
+					(dominio.indexOf(".") >=1)&&
+					(dominio.lastIndexOf(".") < dominio.length - 1)){
+					
+				}
+				else{
+				Swal.fire("", "Favor inserir um E-mail válido!", "warning");
+				}
+			};
+
+            $(document).ready(function ($) {
+
+	$('#celular_func').mask('(00) 00000-0000');
+	$('#cpf_func').mask('000.000.000-00');
+    
+   $('input[type=text]').on('focus', function() {
+    const inputId = $(this).attr('id');
+	const input = $('#' + inputId);
+	  input.on('input', function() {
+    const value = input.val();
+const hasInvalidCharacters = /<|>|\(|\)|\/|\\|\.\.|\.|"|'|!|\?|\*|\-|\_|\+|@|#|%|¨|&|=|\[|\]|\|/.test(value);
+
+    if (hasInvalidCharacters) {
+      Swal.fire("",'O campo ' + inputId.charAt(0).toUpperCase() + inputId.slice(1) + ' contém caracteres inválidos!', "warning");
+      // Se o campo contém caracteres inválidos, limpe o campo
+      input.val('');
+    }
+  });
+  });
+  $('textarea').on('focus', function() {
+    const textareaId = $(this).attr('id');
+   const textarea = $('#' + textareaId);
+
+  // Verifique se o valor da textarea contém os caracteres desejados
+  textarea.on('input', function() {
+    const value = textarea.val();
+const hasInvalidCharacters = /<|>|\(|\)|\/|\\|\.\.|\.|"|'|!|\?|\*|\-|\_|\+|@|#|%|¨|&|=|\[|\]|\|/.test(value);
+
+    if (hasInvalidCharacters) {
+      Swal.fire("",'O campo ' + textareaId.charAt(0).toUpperCase() + textareaId.slice(1) + ' contém caracteres inválidos!', "warning");
+      // Se a textarea contém caracteres inválidos, limpe a textarea
+      textarea.val('');
+    }
+  });
+  
+
+  });
+});
+
+	function verifica ()
+	{
+	const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+		const email = $('#email').val();
+		if(document.frm_envio.nome.value == "" )
+		{
+			
+            Swal.fire("","Preencha corretamente o campo Nome", "warning");
+			document.frm_envio.nome.focus();
+			return false;
+		}
+		if(document.frm_envio.email.value == "")
+		{
+            Swal.fire("", "Preencha corretamente o campo E-mail", "warning");
+			document.frm_envio.email.focus();
+			return false;
+		} else if (!emailRegex.test(email)){
+            Swal.fire("", "Preencha corretamente o campo E-mail", "warning");
+			document.frm_envio.email.focus();
+			return false;
+		}
+		
+		if(document.frm_envio.fone.value == "" )
+		{
+            Swal.fire("", "Preencha corretamente o campo Fone", "warning");
+			document.frm_envio.fone.focus();
+			return false;
+		} else{  
+			const telefone = document.frm_envio.fone.value;
+		
+const numerosTelefone = telefone.replace(/\D/g, '');
+const todosIguais = /^(\d)\1+$/;
+
+if (todosIguais.test(numerosTelefone)) {
+	Swal.fire("", "Preencha corretamente o campo Fone", "warning");
+			document.frm_envio.fone.focus();
+			return false;
+}
+			  }
+		
+		if(document.frm_envio.nivel_ensino.value == "" )
+		{
+            Swal.fire("", "Preencha corretamente o campo Nível de Ensino", "warning");
+			document.frm_envio.nivel_ensino.focus();
+			return false;
+		}
+		if(document.frm_envio.curso.value == "" )
+		{
+            Swal.fire("", "Preencha corretamente o campo Curso", "warning");
+			document.frm_envio.curso.focus();
+			return false;
+		}
+		
+		document.frm_envio.action = "";
+		document.frm_envio.method = "post";
+		document.frm_envio.submit();
+	}
+	
+    <?php if (($_POST['erro']) != ""){ ?>
+
+        Swal.fire("", "<?php print $_POST['erro'] ?>", "warning");
+
+    <?php } ?>
+
+
+
+
 </script>

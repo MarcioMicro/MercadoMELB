@@ -86,7 +86,7 @@ $sql_query_acesso = mysqli_query($conect, $query);
 
               <?php } if ($dados['acesso_niveis'] == 's') { ?>
 
-                <a class="nav-link" href="pag_niveis_acesso.php">
+                <a class="nav-link" href="pag_niveis_acesso_listar.php">
                   <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
                   Níveis de Acesso
                 </a>

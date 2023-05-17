@@ -11,6 +11,16 @@ $query = "SELECT id,nome,marca,preco_venda,embalagem,estoque,unidade FROM produt
 $sql_query_produtos =mysqli_query($conect,$query);
 $num_result=mysqli_num_rows($sql_query_produtos);
 
+$acao = $_POST['acao'];
+
+if($acao = 'deletar'){
+
+    $query_delete = "DELETE FROM `produtos` WHERE id = '$_POST[id_produto]'";
+    
+    $deletar = mysqli_query($conect, $query_delete);
+    header("location:pag_estoque.php");
+}
+
 ?>
 <main>
 <div class="container-fluid">
@@ -31,6 +41,7 @@ $num_result=mysqli_num_rows($sql_query_produtos);
                         <th scope="col">Quantidade em Estoque</th>
                         <th scope="col">Unidade</th>
                         <th scope="col">Embalagem</th>
+                        <th scope="col">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +62,11 @@ $num_result=mysqli_num_rows($sql_query_produtos);
                             <td><?php print $dados['embalagem']; ?></td>
                             <td><?php print $dados['estoque']; ?></td>
                             <td><?php print $dados['unidade']; ?></td>
+                            <td>
+                               <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff" title="Editar" onclick="editaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
+
+                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Editar" onclick="deletaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
+                            </td>
                             </tr>
                          <?php
                                 }       
@@ -65,4 +81,46 @@ $num_result=mysqli_num_rows($sql_query_produtos);
 
 
 </div>
-                            </main>
+</main>
+
+<form name="edita_produto">
+    <input type="hidden" name="id_produto" id="id_produto">
+</form>
+
+<form name="deleta_produto">
+    <input type="hidden" name="id_produto" id="deleta_produto">
+    <input type="hidden" name="acao" id="acao" value="deletar">
+</form>
+
+
+
+<script>
+    editaProduto = (id) => {
+        document.edita_produto.id_produto.value = id;
+        document.edita_produto.action = "edita_produto.php";
+        document.edita_produto.method = "post";
+        document.edita_produto.submit();
+    }
+
+
+
+
+    deletaProduto = (id) => {
+        Swal.fire({
+            text: "Tem certeza de que deseja excluir o produto ?",
+            icon: 'question',
+            showDenyButton: true,
+            denyButtonText: "Não",
+            confirmButtonText: "Sim"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.deleta_produto.id_produto.value = id;
+                document.deleta_produto.action = "pag_estoque.php";
+                document.deleta_produto.method = "post";
+                document.deleta_produto.submit();
+            }
+        });
+        return false;
+    }
+
+</script>

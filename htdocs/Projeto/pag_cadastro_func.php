@@ -253,21 +253,21 @@ include "includes/cabecalho.php";
         }
         if (document.cadastro.sexo_func.value != "") {
             document.cadastro.sexo_func.focus();
-            Swal.fire("", "O campo Sexo não pode estar vazio", "warning");
+            Swal.fire("", "O campo Sexo nï¿½o pode estar vazio", "warning");
             return (false);
         }
         if (document.cadastro.naturalidade.value == "") {
             document.cadastro.naturalidade.focus();
-            Swal.fire("", "O campo Naturalidade não pode estar vazio", "warning");
+            Swal.fire("", "O campo Naturalidade nï¿½o pode estar vazio", "warning");
             return (false);
         }
         if (document.cadastro.endereco.value == "") {
             document.cadastro.endereco.focus();
-            Swal.fire("", "O campo Endereço não pode estar vazio", "warning");
+            Swal.fire("", "O campo Endereï¿½o nï¿½o pode estar vazio", "warning");
             return (false);
         }
         if (document.cadastro.nivel_ensino.value == "") {
-            Swal.fire("", "O campo Nível de Ensino não pode estar vazio", "warning");
+            Swal.fire("", "O campo Nï¿½vel de Ensino nï¿½o pode estar vazio", "warning");
             document.cadastro.nivel_ensino.focus();
             return false;
         }
@@ -291,14 +291,14 @@ include "includes/cabecalho.php";
         }
 
         if ($('#salario_func').val() == "") {
-            Swal.fire("", "Preencha corretamente o campo Salário", "warning");
+            Swal.fire("", "Preencha corretamente o campo Salï¿½rio", "warning");
             $('#salario_func').focus();
             return false;
         }
 
         if (document.cadastro.efetivacao_func.value == "") {
             document.cadastro.efetivacao_func.focus();
-            Swal.fire("", "Preencha corretamente o campo Data de Efetivação", "warning");
+            Swal.fire("", "Preencha corretamente o campo Data de Efetivaï¿½ï¿½o", "warning");
             return (false);
         }
 
@@ -328,9 +328,9 @@ include "includes/cabecalho.php";
 
 
     function validarCPF(cpf) {
-        cpf = cpf.replace(/[^\d]+/g, ''); // Remove todos os caracteres que não são dígitos
-        if (cpf.length != 11) return false; // Verifica se o CPF tem 11 dígitos
-        // Verifica se todos os dígitos são iguais (não é um CPF válido)
+        cpf = cpf.replace(/[^\d]+/g, ''); // Remove todos os caracteres que nï¿½o sï¿½o dï¿½gitos
+        if (cpf.length != 11) return false; // Verifica se o CPF tem 11 dï¿½gitos
+        // Verifica se todos os dï¿½gitos sï¿½o iguais (nï¿½o ï¿½ um CPF vï¿½lido)
         for (var i = 0; i < 10; i++) {
             if (cpf.charAt(i) != cpf.charAt(i + 1)) {
                 break;
@@ -351,7 +351,7 @@ include "includes/cabecalho.php";
         resto = soma % 11;
         var digito2 = (resto < 2) ? 0 : 11 - resto;
         if (digito2 != parseInt(cpf.charAt(10))) return false;
-        return true; // CPF válido
+        return true; // CPF vï¿½lido
     }
 </script>
 

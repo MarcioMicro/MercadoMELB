@@ -17,12 +17,12 @@
 <script src="js/pt-BR.js"></script>
 <script src="js/jquery.maskMoney.min.js"></script>
 <meta charset="iso-8859-1">
-<meta charset="iso-8859-1">
+
 
 <?php
-//error_reporting(0);
-//ini_set('display_errors', 0);
-//ini_set('display_startup_errors', 0);
+error_reporting(0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 include "includes/conect.php";
 $id_func = $_SESSION['usuario_id'];
 

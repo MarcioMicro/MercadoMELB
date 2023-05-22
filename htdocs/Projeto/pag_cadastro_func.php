@@ -5,6 +5,11 @@ session_start();
 
 include "includes/cabecalho.php";
 
+if ($_POST['id_func'] != "") {
+    $query = "SELECT * FROM funcionarios WHERE id = '" . $_POST['id_func']. "'";
+    $result = mysqli_query($conect, $query);
+    $dados_func = mysqli_fetch_array($result);
+}
 
 ?>
 
@@ -25,29 +30,29 @@ include "includes/cabecalho.php";
 
                         <div class="col-md-4">
                             <label for="nome_func" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome_func" name="nome_func">
+                            <input type="text" class="form-control" id="nome_func" name="nome_func" value="<?php print $dados_func['nome'] ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="cpf_func" class="form-label">CPF</label>
-                            <input type="tel" class="form-control" id="cpf_func" name="cpf_func">
+                            <input type="tel" class="form-control" id="cpf_func" name="cpf_func" value="<?php print $dados_func['cpf'] ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="rg_func" class="form-label">RG</label>
-                            <input type="tel" class="form-control" id="rg_func" name="rg_func" maxlength="12">
+                            <input type="tel" class="form-control" id="rg_func" name="rg_func" maxlength="12" value="<?php print $dados_func['rg'] ?>">
                         </div>
 
                     </div>
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-3">
                             <label for="nascimento_func" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="nascimento_func" name="nascimento_func">
+                            <input type="date" class="form-control" id="nascimento_func" name="nascimento_func" value="<?php if ($dados_func['data_nascimento'] != "") print date('Y-m-d', strtotime($dados_func['data_nascimento'])); ?>">
                         </div>
                         <div class="col-md-3">
                             <label for="sexo_func" class="form-label">Sexo</label>
                             <select class="form-select" aria-label="Default select example" id="sexo_func" name="sexo_func">
-                                <option selected value="">Selecione</options>
-                                <option value="F">Feminino</options>
-                                <option value="M">Masculino</options>
+                                <option value="">Selecione</options>
+                                <option <?php if ($dados_func['sexo'] == "F") print "selected"; ?> value="F">Feminino</options>
+                                <option <?php if ($dados_func['sexo'] == "M") print "selected"; ?> value="M">Masculino</options>
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -58,7 +63,7 @@ include "includes/cabecalho.php";
                                 $query_natural = "SELECT id, cidade FROM cidades ORDER BY cidade ASC";
                                 $result_naturalidade = mysqli_query($conect, $query_natural);
                                 while ($dados_naturalidade = mysqli_fetch_array($result_naturalidade)) { ?>
-                                    <option value = "<?php print $dados_naturalidade['id']; ?>"><?php print $dados_naturalidade['cidade']; ?></option>
+                                    <option <?php if ($dados_func['naturalidade'] == $dados_naturalidade['id']) print "selected"; ?> value = "<?php print $dados_naturalidade['id']; ?>"><?php print $dados_naturalidade['cidade']; ?></option>
                                 
 <?php
                                     }
@@ -76,7 +81,7 @@ include "includes/cabecalho.php";
                                     $result_endereco = mysqli_query($conect, $query_endereco);
 
                                     while ($dados_endereco = mysqli_fetch_array($result_endereco)) { ?>
-                                        <option value = "<?php print $dados_endereco['id'] ?>"><?php print $dados_endereco['cidade'] . " - " . $dados_endereco['bairro'] . " - " . $dados_endereco['rua'] . " - ". $dados_endereco['numero'] ?></option>
+                                        <option <?php if ($dados_func['id_enderecos'] == $dados_endereco['id']) print "selected"; ?> value = "<?php print $dados_endereco['id'] ?>"><?php print $dados_endereco['cidade'] . " - " . $dados_endereco['bairro'] . " - " . $dados_endereco['rua'] . " - ". $dados_endereco['numero'] ?></option>
                                     <?php
                                     }
                                     ?>
@@ -87,26 +92,26 @@ include "includes/cabecalho.php";
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-5">
                             <label for="nivel_ensino_func" class="form-label">Nível de Ensino</label>
-                            <select class="form-select" aria-label="Default select example" name="nivel_ensino_func" id="nivel_ensino_func">
-                                <option selected value="">Selecione</option>
-                                <option value="Ensino Fundamental Incompleto">Ensino fundamental incompleto</option>
-                                <option value="Ensino Fundamental Completo">Ensino fundamental completo</option>
-                                <option value="Ensino Fundamental Andamento">Ensino fundamental em andamento</option>
-                                <option value="Ensino Medio Incompleto">Ensino médio incompleto</option>
-                                <option value="Ensino Medio Completo">Ensino médio completo</option>
-                                <option value="Ensino Medio Andamento">Ensino médio em andamento</option>
-                                <option value="Ensino Superior Incompleto">Ensino Superior Incompleto</option>
-                                <option value="Ensino Superior Completo">Ensino Superior Completo</option>
-                                <option value="Ensino Superior Andamento">Ensino Superior Andamento</option>
+                            <select class="form-select" name="nivel_ensino_func" id="nivel_ensino_func">
+                                <option value="">Selecione</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Fundamental Incompleto') print "selected" ?> value="Ensino Fundamental Incompleto">Ensino fundamental incompleto</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Fundamental Completo') print "selected" ?> value="Ensino Fundamental Completo">Ensino fundamental completo</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Fundamental Andamento') print "selected" ?> value="Ensino Fundamental Andamento">Ensino fundamental em andamento</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Medio Incompleto') print "selected" ?> value="Ensino Medio Incompleto">Ensino médio incompleto</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Medio Completo') print "selected" ?> value="Ensino Medio Completo">Ensino médio completo</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Medio Andamento') print "selected" ?> value="Ensino Medio Andamento">Ensino médio em andamento</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Superior Incompleto') print "selected" ?> value="Ensino Superior Incompleto">Ensino Superior Incompleto</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Superior Completo') print "selected" ?> value="Ensino Superior Completo">Ensino Superior Completo</option>
+                                <option <?php if ($dados_func['nivel_ensino'] == 'Ensino Superior Andamento') print "selected" ?> value="Ensino Superior Andamento">Ensino Superior Andamento</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="celular_func" class="form-label">Celular</label>
-                            <input type="tel" class="form-control" id="celular_func" name="celular_func">
+                            <input type="tel" class="form-control" id="celular_func" name="celular_func" value="<?php print $dados_func['telefone'] ?>">
                         </div>
                         <div class="col-md-3">
                             <label for="email_func" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email_func" name="email_func">
+                            <input type="email" class="form-control" id="email_func" name="email_func" value = "<?php print $dados_func['email'] ?>">
                         </div>
                     </div>
                 </div>
@@ -123,22 +128,22 @@ include "includes/cabecalho.php";
 
                         <div class="col-md-4">
                             <label for="salario_func" class="form-label">Salário</label>
-                            <input type="tel" class="form-control" id="salario_func" name="salario_func">
+                            <input type="tel" class="form-control" id="salario_func" name="salario_func" value = "<?php print $dados_func['salario'] ?>">
                         </div>
 
                         <div class="col-md-4">
                             <label for="efetivacao_func" class="form-label">Data de efetivação</label>
-                            <input type="date" class="form-control" id="efetivacao_func" name="efetivacao_func" max="<?php print date("Y-m-d") ?>">
+                            <input type="date" class="form-control" id="efetivacao_func" name="efetivacao_func" max="<?php print date("Y-m-d") ?>" value = "<?php if ($dados_func['data_admissao'] != "") print date("Y-m-d", strtotime($dados_func['data_admissao']));  ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="departamento_func" class="form-label">Departamento</label>
-                            <input type="tel" class="form-control" id="departamento_func" name="departamento_func">
+                            <input type="tel" class="form-control" id="departamento_func" name="departamento_func" value = "<?php print $dados_func['departamento'] ?>">
                         </div>
                     </div>
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-4">
                             <label for="cargo_func" class="form-label">Cargo</label>
-                            <input type="text" class="form-control" id="cargo_func" name="cargo_func">
+                            <input type="text" class="form-control" id="cargo_func" name="cargo_func" value = "<?php print $dados_func['cargo'] ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="senha_func" class="form-label">Senha</label>
@@ -179,7 +184,7 @@ include "includes/cabecalho.php";
             const input = $('#' + inputId);
             input.on('input', function() {
                 const value = input.val();
-                const hasInvalidCharacters = /<|>|\(|\)|\/|\\|\.\.|\.|"|'|!|\?|\*|\-|\_|\+|@|#|%|¨|&|=|\[|\]|\|/.test(value);
+                const hasInvalidCharacters = /<|>|\(|\)|\/|\\|"|'|!|\?|\*|\-|\_|\+|#|%|¨|&|=|\[|\]|\|/.test(value);
 
                 if (hasInvalidCharacters) {
                     Swal.fire("", 'O campo ' + inputId.charAt(0).toUpperCase() + inputId.slice(1) + ' contém caracteres inválidos!', "warning");
@@ -248,35 +253,35 @@ include "includes/cabecalho.php";
             Swal.fire("", "Preencha corretamente o campo RG", "warning");
             return (false);
         }
-        if (document.cadastro.nascimento.func.value == "") {
-            document.cadastro.nascimento.func.focus();
+        if (document.cadastro.nascimento_func.value == "") {
+            document.cadastro.nascimento_func.focus();
             Swal.fire("", "Preencha corretamente o campo Data de Nascimento", "warning");
             return (false);
         }
-        if (document.cadastro.sexo_func.value != "") {
+        if (document.cadastro.sexo_func.value == "") {
             document.cadastro.sexo_func.focus();
-            Swal.fire("", "O campo Sexo n�o pode estar vazio", "warning");
+            Swal.fire("", "O campo Sexo n&#227;o pode estar vazio", "warning");
             return (false);
         }
-        if (document.cadastro.naturalidade.value == "") {
-            document.cadastro.naturalidade.focus();
-            Swal.fire("", "O campo Naturalidade n�o pode estar vazio", "warning");
+        if (document.cadastro.naturalidade_func.value == "") {
+            document.cadastro.naturalidade_func.focus();
+            Swal.fire("", "O campo Naturalidade n&#227;o pode estar vazio", "warning");
             return (false);
         }
-        if (document.cadastro.endereco.value == "") {
-            document.cadastro.endereco.focus();
-            Swal.fire("", "O campo Endere�o n�o pode estar vazio", "warning");
+        if (document.cadastro.endereco_func.value == "") {
+            document.cadastro.endereco_func.focus();
+            Swal.fire("", "O campo Endere&#231;o n&#227;o pode estar vazio", "warning");
             return (false);
         }
-        if (document.cadastro.nivel_ensino.value == "") {
-            Swal.fire("", "O campo N�vel de Ensino n�o pode estar vazio", "warning");
-            document.cadastro.nivel_ensino.focus();
+        if (document.cadastro.nivel_ensino_func.value == "") {
+            Swal.fire("", "O campo N&#237;vel de Ensino n&#227;o pode estar vazio", "warning");
+            document.cadastro.nivel_ensino_func.focus();
             return false;
         }
      
         const telefone = document.cadastro.celular_func.value;
 
-        const numerosTelefone = celular_func.replace(/\D/g, '');
+        const numerosTelefone = telefone.replace(/\D/g, '');
         const todosIguais = /^(\d)\1+$/;
         if (document.cadastro.celular_func.value == "" || todosIguais.test(numerosTelefone)) {
             Swal.fire("", "Preencha corretamente o campo Fone", "warning");
@@ -285,22 +290,22 @@ include "includes/cabecalho.php";
         }
 
         const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-        const email = $('#email').val();
-        if (document.cadastro.email.value == "" || !emailRegex.test(email)) {
+        const email = $('#email_func').val();
+        if (document.cadastro.email_func.value == "" || !emailRegex.test(email)) {
             Swal.fire("", "Preencha corretamente o campo E-mail", "warning");
             document.cadastro.email.focus();
             return false;
         }
 
         if ($('#salario_func').val() == "") {
-            Swal.fire("", "Preencha corretamente o campo Sal�rio", "warning");
+            Swal.fire("", "Preencha corretamente o campo Sal&#225;rio", "warning");
             $('#salario_func').focus();
             return false;
         }
 
         if (document.cadastro.efetivacao_func.value == "") {
             document.cadastro.efetivacao_func.focus();
-            Swal.fire("", "Preencha corretamente o campo Data de Efetiva��o", "warning");
+            Swal.fire("", "Preencha corretamente o campo Data de Efetiva&#231;&#227;o", "warning");
             return (false);
         }
 

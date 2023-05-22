@@ -38,7 +38,7 @@ if ($num_rows > 0) {
     $erro = "CPF já cadastrado no sistema!";
 
 } else if ($acao == "") {
-    $query_insert = "INSERT INTO funcionarios (id, nome, cargo, departamento, salario, data_admissao, cpf, rg, data_nascimento, sexo, telefone, email, senha, id_enderecos, naturalidade) VALUES
+    $query_insert = "INSERT INTO funcionarios (id, nome, cargo, departamento, salario, data_admissao, cpf, rg, data_nascimento, sexo, telefone, nivel_ensino, email, senha, id_enderecos, naturalidade) VALUES
                     (
                     '',
                     '$nome',
@@ -51,6 +51,7 @@ if ($num_rows > 0) {
                     '$nascimento',
                     '$sexo',
                     '$celular',
+                    '$nivel_ens',
                     '$email',
                     '$senha',
                     '$endereco',
@@ -61,12 +62,28 @@ if ($num_rows > 0) {
     $result_insert = mysqli_query($conect, $query_insert);
     
 } elseif ($acao == "editar") {
-    
+    $query_update = "UPDATE funcionarios SET nome = '$nome',
+    cargo = '$cargo',
+    departamento = '$dep',
+    salario = '$salario',
+    data_admissao = '$efetivacao',
+    cpf = '$cpf',
+    rg = '$rg',
+    data_nascimento = '$nascimento',
+    sexo = '$sexo', 
+    telefone = '$celular',
+    nivel_ensino = '$nivel_ens',
+    email = '$email',
+    senha = '$senha',
+    id_enderecos = '$endereco',
+    naturalidade = '$naturalidade' WHERE id = $id_func";
+
+    $result = mysqli_query($conect, $query_update);
 }
 
 ?>
 
-<form action="pag_cadastro_func.php" method="post" name="volta" id ="volta">
+<form action="funcionario.php" method="post" name="volta" id ="volta">
     <?php if ($erro != "")  { ?>
         <input type="hidden" value="<?php $erro ?>" name="erro" id ="erro">
     <?php } ?>

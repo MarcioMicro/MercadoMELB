@@ -37,7 +37,7 @@ if($acao = 'deletar'){
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Marca</th>
-                        <th scope="col">Preço de Venda</th>
+                        <th scope="col">Pre&ccedil;o de Venda</th>
                         <th scope="col">Quantidade em Estoque</th>
                         <th scope="col">Unidade</th>
                         <th scope="col">Embalagem</th>
@@ -48,7 +48,7 @@ if($acao = 'deletar'){
                     <?php if($num_result == 0){ ?>
                       
                         <tr>
-                            <td colspan="7">Não existem produtos cadastrados</td>
+                            <td colspan="7">N&atilde;o existem produtos cadastrados</td>
                         </tr>
                   <?php  
                     } else{ 
@@ -110,7 +110,7 @@ if($acao = 'deletar'){
             text: "Tem certeza de que deseja excluir o produto ?",
             icon: 'question',
             showDenyButton: true,
-            denyButtonText: "Não",
+            denyButtonText: "N�o",
             confirmButtonText: "Sim"
         }).then((result) => {
             if (result.isConfirmed) {

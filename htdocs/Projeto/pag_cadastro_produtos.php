@@ -34,7 +34,7 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
         </div>
         <div class="col-md-4">
             <label for="preco_produto" class="form-label">Preço Venda</label>
-            <input type="text" class="form-control" id="preco_produto" name = "preco_produto">
+            <input type="tel" class="form-control" id="preco_produto" name = "preco_produto">
         </div>
 
 

@@ -27,7 +27,7 @@ if ($dados_usuario['id'] == $usuario &&  password_verify($senha,$dados_usuario['
     $_SESSION['usuario_id'] = $usuario; 
     $_SESSION['usuario_nome'] = $dados_usuario['nome'];
    
-    if ($dados_usuario['nome'] == "O mestre dos magos" and $dados_usuario['id'] == 1000) {
+    if ($dados_usuario['id'] == 1000) {
         $_SESSION['admin'] = "s";
     } else {
         $_SESSION['admin'] = "n";

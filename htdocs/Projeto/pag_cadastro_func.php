@@ -151,7 +151,7 @@ include "includes/cabecalho.php";
                         <div class="col-md-12 d-flex justify-content-center">
                             <button class="btn btn-success btn-lg me-3" type="button" onclick="verifica()">Cadastrar</button>
 
-                            <button class="btn btn-danger btn-lg">Cancelar</button>
+                            <button type= "button" class="btn btn-danger btn-lg" onclick="window.location.href='funcionarios.php'">Cancelar</button>
                         </div>
 
 
@@ -159,6 +159,8 @@ include "includes/cabecalho.php";
                     </div>
                 </div>
             </div>
+            <input type = "hidden" value = "<?php print $_POST['acao'] ?>" name = "acao" id = "acao">
+            <input type="hidden"  value = "<?php print $_POST['id_func'] ?>" name = "id_func" id = "id_func">
         </form>
     </div>
 </main>

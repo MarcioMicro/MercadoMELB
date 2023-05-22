@@ -76,10 +76,10 @@ if($acao = 'deletar'){
                                             else print "Não" ?></td>
                                         <td><?php if ($dados['acesso_vendas'] == 's') print "Sim";
                                             else print "Não" ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff" title="Editar" onclick="editaAcesso(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
+                                        <td class="d-flex justify-content-center align-items-center">
+                                            <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff; margin-right: 10px;" title="Editar" onclick="editaAcesso(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
 
-                                            <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Editar" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Excluir" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
                                         </td>
                                     </tr>
                                 <?php

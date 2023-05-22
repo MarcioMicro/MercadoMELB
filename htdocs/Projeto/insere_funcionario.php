@@ -23,6 +23,11 @@ $cargo = trim($_POST['cargo_func']);
 $senha = trim($_POST['senha_func']);
 
 
+
+$acao = trim($_POST['acao']);
+$id_func = trim($_POST['id_func']);
+
+
 $senha = password_hash($senha, PASSWORD_DEFAULT);
 
 $query = "SELECT id FROM funcionarios WHERE cpf = '$cpf'";
@@ -32,7 +37,7 @@ $num_rows = mysqli_num_rows($result);
 if ($num_rows > 0) {
     $erro = "CPF já cadastrado no sistema!";
 
-} else {
+} else if ($acao == "") {
     $query_insert = "INSERT INTO funcionarios (id, nome, cargo, departamento, salario, data_admissao, cpf, rg, data_nascimento, sexo, telefone, email, senha, id_enderecos, naturalidade) VALUES
                     (
                     '',
@@ -55,8 +60,9 @@ if ($num_rows > 0) {
     
     $result_insert = mysqli_query($conect, $query_insert);
     
+} elseif ($acao == "editar") {
+    
 }
-
 
 ?>
 

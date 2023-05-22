@@ -72,9 +72,9 @@ $sql_query_acesso = mysqli_query($conect, $query);
 
               <?php } if ($dados['acesso_funcionarios'] == 's') { ?>
 
-                <a class="nav-link" href="pag_cadastro_func.php">
+                <a class="nav-link" href="funcionarios.php">
                   <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
-                  Cadastrar funcionário
+                  Funcionários
                 </a>
 
               <?php } if ($dados['acesso_vendas'] == 's') {  ?>

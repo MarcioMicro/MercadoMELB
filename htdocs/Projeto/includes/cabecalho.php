@@ -41,6 +41,10 @@ $sql_query_acesso = mysqli_query($conect, $query);
     color: #ec6ad1 !important;
     text-decoration: none;
   }
+
+  .nav-link{
+    font-size: 20px;
+  }
 </style>
 
 <body class="sb-nav-fixed">
@@ -52,7 +56,7 @@ $sql_query_acesso = mysqli_query($conect, $query);
         <div class="sb-sidenav-menu">
           <div class="nav">
             <a class="navbar-brand d-flex justify-content-center" href="projeto_inicio.php"><img src="images/logo_melb.png" class="login-logo"></a>
-            <div class="sb-sidenav-menu-heading">Modulos</div>
+            <div class="sb-sidenav-menu-heading" style="font-size:15px;">Modulos</div>
             <?php
               while ($dados = mysqli_fetch_array($sql_query_acesso)) {
 
@@ -63,11 +67,11 @@ $sql_query_acesso = mysqli_query($conect, $query);
                   Estoque
                 </a>
 
-              <?php } if ($dados['acesso_produtos'] == 's') { ?>
+              <?php } if ($dados['acesso_clientes'] == 's') { ?>
 
-                <a class="nav-link" href="pag_cadastro_produtos.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-boxes-stacked"></i></div>
-                  Cadastro de Produtos
+                <a class="nav-link" href="clientes.php">
+                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-users"></i></div>
+                  Clientes
                 </a>
 
               <?php } if ($dados['acesso_funcionarios'] == 's') { ?>
@@ -80,14 +84,14 @@ $sql_query_acesso = mysqli_query($conect, $query);
               <?php } if ($dados['acesso_vendas'] == 's') {  ?>
 
                 <a class="nav-link" href="pag_vendas.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
+                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-dollar-sign"></i></div>
                   Vendas
                 </a>
 
               <?php } if ($dados['acesso_niveis'] == 's') { ?>
 
                 <a class="nav-link" href="pag_niveis_acesso_listar.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
+                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-shield-halved"></i></div>
                   Níveis de Acesso
                 </a>
 

@@ -9,7 +9,7 @@
 }
 
 .sidenav-azul {
-    background: #5ea1db;
+    background-image: linear-gradient(#327fd6,#317fd5,#072987);
     background-size: cover;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .navbar-azul {
-    background: #343c89;
+    background-image: linear-gradient(to right, #327fd6,#072987);
     color: #fff;
 }
 

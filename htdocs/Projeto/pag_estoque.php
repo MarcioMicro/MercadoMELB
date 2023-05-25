@@ -30,6 +30,9 @@ if($acao = 'deletar'){
                       <br>
                       <div class="card">
                         <div class="card-body">
+                        <div class = "col-md-12 pb-5">
+                        <button class="btn btn-primary" onclick="window.location.href='edita_produto.php'"><i class ="fa fa-plus"></i> Cadastrar Novo Produto</button>
+                        </div>
                         <div class="row">
                 <table class="table table table-bordered table-hover" id="dados">
                     <thead>
@@ -110,7 +113,7 @@ if($acao = 'deletar'){
             text: "Tem certeza de que deseja excluir o produto ?",
             icon: 'question',
             showDenyButton: true,
-            denyButtonText: "Não",
+            denyButtonText: "Nï¿½o",
             confirmButtonText: "Sim"
         }).then((result) => {
             if (result.isConfirmed) {

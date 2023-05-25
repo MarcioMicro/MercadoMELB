@@ -45,7 +45,13 @@ if($acao = 'deletar'){
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
+                                <?php if ($num_result == 0) { ?>
+
+                                    <tr>
+                                        <td colspan="7">Não existem funcionários cadastrados</td>
+                                    </tr>
+                                    <?php
+                                } else {
                                     while ($dados = mysqli_fetch_array($result)) {
                                     ?>
                                         <tr>
@@ -63,7 +69,7 @@ if($acao = 'deletar'){
                                             </td>
                                         </tr>
                                 <?php
-                                   
+                                    }
                                 }
                                 ?>
                             </tbody>

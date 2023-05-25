@@ -10,7 +10,7 @@ $query = "SELECT
                 funcionarios.nome, 
                 funcionarios.cargo, 
                 niveis_acesso.acesso_estoque,
-                niveis_acesso.acesso_produtos,
+                niveis_acesso.acesso_clientes,
                 niveis_acesso.acesso_funcionarios,
                 niveis_acesso.acesso_vendas
             FROM 
@@ -53,7 +53,7 @@ if($acao = 'deletar'){
                                     <th scope="col">Nome</th>
                                     <th scope="col">Cargo</th>
                                     <th scope="col">Acesso Estoque</th>
-                                    <th scope="col">Acesso Produtos</th>
+                                    <th scope="col">Acesso Clientes</th>
                                     <th scope="col">Acesso Funcionários</th>
                                     <th scope="col">Acesso Vendas</th>
                                     <th scope="col">Editar</th>
@@ -70,7 +70,7 @@ if($acao = 'deletar'){
                                         <td><?php print $dados['cargo']; ?></td>
                                         <td><?php if ($dados['acesso_estoque'] == 's') print "Sim";
                                             else print "Não"  ?></td>
-                                        <td><?php if ($dados['acesso_produtos'] == 's') print "Sim";
+                                        <td><?php if ($dados['acesso_clientes'] == 's') print "Sim";
                                             else print "Não" ?></td>
                                         <td><?php if ($dados['acesso_funcionarios'] == 's') print "Sim";
                                             else print "Não" ?></td>

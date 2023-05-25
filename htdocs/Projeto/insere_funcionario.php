@@ -4,7 +4,7 @@ include "includes/conect.php";
 session_name('mercado');
 session_start();
 
-print_r($_POST);
+//print_r($_POST);
 
 $nome = trim($_POST['nome_func']);
 $cpf = trim($_POST['cpf_func']);
@@ -34,7 +34,7 @@ $query = "SELECT id FROM funcionarios WHERE cpf = '$cpf'";
 $result = mysqli_query($conect, $query);
 $num_rows = mysqli_num_rows($result);
 
-if ($num_rows > 0) {
+if ($num_rows > 0 and $acao != "editar") {
     $erro = "CPF já cadastrado no sistema!";
 
 } else if ($acao == "") {
@@ -78,12 +78,13 @@ if ($num_rows > 0) {
     id_enderecos = '$endereco',
     naturalidade = '$naturalidade' WHERE id = $id_func";
 
+
     $result = mysqli_query($conect, $query_update);
 }
 
 ?>
 
-<form action="funcionario.php" method="post" name="volta" id ="volta">
+<form action="funcionarios.php" method="post" name="volta" id ="volta">
     <?php if ($erro != "")  { ?>
         <input type="hidden" value="<?php $erro ?>" name="erro" id ="erro">
     <?php } ?>

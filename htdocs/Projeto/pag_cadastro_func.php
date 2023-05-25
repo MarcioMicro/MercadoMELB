@@ -289,7 +289,7 @@ if ($_POST['id_func'] != "") {
             return false;
         }
 
-        const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
         const email = $('#email_func').val();
         if (document.cadastro.email_func.value == "" || !emailRegex.test(email)) {
             Swal.fire("", "Preencha corretamente o campo E-mail", "warning");

@@ -134,10 +134,6 @@ $sql_query_acesso = mysqli_query($conect, $query);
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i><?php print ucfirst($_SESSION['usuario_nome']) ?></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-              <li>
-                <hr class="dropdown-divider">
-              </li>
               <li><a class="dropdown-item" href="includes/encerrar_sessao.php">Finalizar</a></li>
             </ul>
           </li>
@@ -172,6 +168,34 @@ $sql_query_acesso = mysqli_query($conect, $query);
               }
             }
           });
+
+          $('#venda').DataTable({
+            "language": {
+              "sProcessing": "Processando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "Não foram encontrados resultados",
+              "sEmptyTable": "Sem dados disponíveis nesta tabela",
+              "sInfo": "Mostrando registros de _START_ a _END_ em um total de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando registros de 0 a 0 de um total de 0 registros",
+              "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Carregando...",
+              "oPaginate": {
+                "sFirst": "Primeiro",
+                "sLast": "Último",
+                "sNext": "Seguinte",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending": ": Ordenar de forma crescente",
+                "sSortDescending": ": Ordenar de forma decrescente"
+              }
+            }
+          });
+
 
           $('select').select2({
             theme: 'bootstrap-5',

@@ -5,12 +5,12 @@ include "includes/cabecalho.php";
 include "includes/conect.php";
 
 $acesso_estoque = trim($_POST['acesso_estoque']);
-$acesso_clientes = trim($_POST['acesso_clientes']);
+$acesso_produtos = trim($_POST['acesso_produtos']);
 $acesso_funcionarios = trim($_POST['acesso_funcionarios']);
 $acesso_vendas = trim($_POST['acesso_vendas']);
 $id_func = trim($_POST['id_funcionario']);
 
-    $query_atualiza = "update niveis_acesso SET acesso_estoque = '$acesso_estoque',acesso_clientes = '$acesso_clientes',
+    $query_atualiza = "update niveis_acesso SET acesso_estoque = '$acesso_estoque',acesso_produtos = '$acesso_produtos',
                         acesso_funcionarios = '$acesso_funcionarios',acesso_vendas = '$acesso_vendas' 
                         WHERE id_func = $id_func";
         

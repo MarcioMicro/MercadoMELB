@@ -45,6 +45,20 @@ $sql_query_acesso = mysqli_query($conect, $query);
   .nav-link{
     font-size: 20px;
   }
+
+  hr{
+    margin: 0px 15px 0px 15px;
+    color: white;
+    font-weight: 200;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  }
+
+  .nav-title{
+    margin: 5px 5px 5px 20px;
+    padding: 0px !important; 
+    color: #E3F4F4 !important;
+  }
 </style>
 
 <body class="sb-nav-fixed">
@@ -56,7 +70,9 @@ $sql_query_acesso = mysqli_query($conect, $query);
         <div class="sb-sidenav-menu">
           <div class="nav">
             <a class="navbar-brand d-flex justify-content-center" href="projeto_inicio.php"><img src="images/logo_melb.png" class="login-logo"></a>
-            <div class="sb-sidenav-menu-heading" style="font-size:15px;">Modulos</div>
+            <hr>
+            <div class="sb-sidenav-menu-heading nav-title" style="font-size:15px;">Modulos</div>
+            <hr>
             <?php
               while ($dados = mysqli_fetch_array($sql_query_acesso)) {
 
@@ -97,7 +113,7 @@ $sql_query_acesso = mysqli_query($conect, $query);
 
               <?php }
             } ?>
-
+            <hr>
           </div>
         </div>
       </nav>

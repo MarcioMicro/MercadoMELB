@@ -56,7 +56,7 @@ html {
 }
 
 .bg-gradiente-login {
-    background: linear-gradient(180deg, #59bce5 10%, #22275c 100%);
+    background-image: linear-gradient(#146C94,#3f3f42);
     background-size: cover;
 }
 

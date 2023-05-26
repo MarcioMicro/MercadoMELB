@@ -14,6 +14,10 @@
 <?php
 // usuario = 1001
 // senha = senha123
+
+error_reporting(0);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 ?>
 
 <body class="bg-gradiente-login">

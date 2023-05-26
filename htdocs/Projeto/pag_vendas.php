@@ -6,7 +6,19 @@ session_start();
 include "includes/cabecalho.php";
 
 
-$query_vendas = "SELECT * from vendas";
+$query_vendas = "SELECT
+                     vendas.*, funcionarios.nome AS nome_func,clientes.nome AS nome_cliente
+                from 
+                    vendas
+                INNER JOIN 
+                    funcionarios
+                ON
+                    funcionarios.id = vendas.id_funcionarios
+                INNER JOIN 
+                    clientes    
+                ON
+                    clientes.id = vendas.id_clientes
+";
 $resultado_vendas = mysqli_query($conect, $query_vendas);
 ?>
 
@@ -32,7 +44,6 @@ $resultado_vendas = mysqli_query($conect, $query_vendas);
                         <th scope="col">Valor da Venda</th>
                         <th scope="col">Funcionário</th>
                         <th scope="col">Cliente</th>
-                        <th scope="col">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,13 +54,8 @@ $resultado_vendas = mysqli_query($conect, $query_vendas);
                             <th scope="row"><?php print $dados['id']; ?></th>
                             <td><?php print $dados['data']; ?></td>
                             <td><?php print $dados['valor_total']; ?></td>
-                            <td><?php print $dados['id_funcionarios']; ?></td>
-                            <td><?php print $dados['id_clientes']; ?></td>
-                            <td>
-                               <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff" title="Editar" onclick="editaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
-
-                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Editar" onclick="deletaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
-                            </td>
+                            <td><?php print $dados['nome_func']; ?></td>
+                            <td><?php print $dados['nome_cliente']; ?></td>
                             </tr>
                          <?php
                                 } 

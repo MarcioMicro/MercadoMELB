@@ -5,11 +5,12 @@
 <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="css/select2.min.css">
 <link rel="stylesheet" href="css/select2-bootstrap-5-theme.min.css">
+<link rel="stylesheet" href="css/font-awesome-all.min.css">
 <script src="js/Chart.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
 <script src="js/sweetalert2.all.min.js"></script>
-<script src="https://kit.fontawesome.com/10a6d5e523.js" crossorigin="anonymous"></script>
+<script src="js/font-awesome-all.min.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap5.min.js"></script>
 <script src="js/jquery.mask.min.js"></script>
@@ -29,7 +30,7 @@ $id_func = $_SESSION['usuario_id'];
 $query = "SELECT * FROM niveis_acesso WHERE id_func = $id_func";
 
 $sql_query_acesso = mysqli_query($conect, $query);
-
+$dados = mysqli_fetch_array($sql_query_acesso)
 ?>
 
 <style>
@@ -42,11 +43,11 @@ $sql_query_acesso = mysqli_query($conect, $query);
     text-decoration: none;
   }
 
-  .nav-link{
+  .nav-link {
     font-size: 20px;
   }
 
-  hr{
+  hr {
     margin: 0px 15px 0px 15px;
     color: white;
     font-weight: 200;
@@ -54,9 +55,9 @@ $sql_query_acesso = mysqli_query($conect, $query);
 
   }
 
-  .nav-title{
+  .nav-title {
     margin: 5px 5px 5px 20px;
-    padding: 0px !important; 
+    padding: 0px !important;
     color: #E3F4F4 !important;
   }
 </style>
@@ -74,53 +75,56 @@ $sql_query_acesso = mysqli_query($conect, $query);
             <div class="sb-sidenav-menu-heading nav-title" style="font-size:15px;">Modulos</div>
             <hr>
             <?php
-              while ($dados = mysqli_fetch_array($sql_query_acesso)) {
+            if ($dados['acesso_estoque'] == 's') { ?>
 
-              if ($dados['acesso_estoque'] == 's') { ?>
+              <a class="nav-link" href="pag_estoque.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-boxes"></i></div>
+                Estoque
+              </a>
 
-                <a class="nav-link" href="pag_estoque.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-boxes-stacked"></i></div>
-                  Estoque
-                </a>
+            <?php }
+            if ($dados['acesso_clientes'] == 's') { ?>
 
-              <?php } if ($dados['acesso_clientes'] == 's') { ?>
+              <a class="nav-link" href="clientes.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-users"></i></div>
+                Clientes
+              </a>
 
-                <a class="nav-link" href="clientes.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-users"></i></div>
-                  Clientes
-                </a>
+            <?php }
+            if ($dados['acesso_funcionarios'] == 's') { ?>
 
-              <?php } if ($dados['acesso_funcionarios'] == 's') { ?>
+              <a class="nav-link" href="funcionarios.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-address-card"></i></div>
+                Funcionários
+              </a>
 
-                <a class="nav-link" href="funcionarios.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-address-card"></i></div>
-                  Funcionários
-                </a>
+            <?php }
+            if ($dados['acesso_vendas'] == 's') {  ?>
 
-              <?php } if ($dados['acesso_vendas'] == 's') {  ?>
+              <a class="nav-link" href="pag_vendas.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-dollar-sign"></i></div>
+                Vendas
+              </a>
 
-                <a class="nav-link" href="pag_vendas.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-dollar-sign"></i></div>
-                  Vendas
-                </a>
+            <?php }
+            if ($dados['acesso_niveis'] == 's') { ?>
 
-              <?php } if ($dados['acesso_niveis'] == 's') { ?>
+              <a class="nav-link" href="pag_niveis_acesso_listar.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-shield-alt"></i></div>
+                Níveis de Acesso
+              </a>
 
-                <a class="nav-link" href="pag_niveis_acesso_listar.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-shield-halved"></i></div>
-                  Níveis de Acesso
-                </a>
+            <?php }
+            if ($dados['acesso_relatorios'] == 's') { ?>
 
-              <?php } if ($dados['acesso_relatorios'] == 's'){ ?>
+              <a class="nav-link" href="relatorios.php">
+                <div class="sb-nav-link-icon"> <i class="fa fa-file"></i></div>
+                Relatórios
+              </a>
 
-                <a class="nav-link" href="relatorios.php">
-                  <div class="sb-nav-link-icon"> <i class="fa-solid fa-file"></i></div>
-                  Relatórios
-                </a>
-
-              <?php 
-              }
-            } ?>
+            <?php
+            }
+            ?>
             <hr>
           </div>
         </div>
@@ -177,41 +181,22 @@ $sql_query_acesso = mysqli_query($conect, $query);
             }
           });
 
-          $('#venda').DataTable({
-            "language": {
-              "sProcessing": "Processando...",
-              "sLengthMenu": "Mostrar _MENU_ registros",
-              "sZeroRecords": "Não foram encontrados resultados",
-              "sEmptyTable": "Sem dados disponíveis nesta tabela",
-              "sInfo": "Mostrando registros de _START_ a _END_ em um total de _TOTAL_ registros",
-              "sInfoEmpty": "Mostrando registros de 0 a 0 de um total de 0 registros",
-              "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
-              "sInfoPostFix": "",
-              "sSearch": "Buscar:",
-              "sUrl": "",
-              "sInfoThousands": ",",
-              "sLoadingRecords": "Carregando...",
-              "oPaginate": {
-                "sFirst": "Primeiro",
-                "sLast": "Último",
-                "sNext": "Seguinte",
-                "sPrevious": "Anterior"
-              },
-              "oAria": {
-                "sSortAscending": ": Ordenar de forma crescente",
-                "sSortDescending": ": Ordenar de forma decrescente"
-              }
-            }
-          });
+
 
 
           $('select').select2({
             theme: 'bootstrap-5',
             language: "pt-BR"
-              
-            
+
+
           });
 
-          $('#salario_func').maskMoney({prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
+          $('#salario_func').maskMoney({
+            prefix: 'R$ ',
+            allowNegative: false,
+            thousands: '.',
+            decimal: ',',
+            affixesStay: false
+          });
         });
       </script>

@@ -68,7 +68,7 @@ if($acao = 'deletar'){
                             <td>
                                <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff" title="Editar" onclick="editaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
 
-                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Editar" onclick="deletaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Editar" onclick="deletaProduto(<?php print $dados['id']; ?>)"><i class="fas fa-trash"></i></button>
                             </td>
                             </tr>
                          <?php

@@ -45,13 +45,7 @@ if($acao = 'deletar'){
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($num_result == 0) { ?>
-
-                                    <tr>
-                                        <td colspan="7">Não existem funcionários cadastrados</td>
-                                    </tr>
-                                    <?php
-                                } else {
+                              <?php
                                     while ($dados = mysqli_fetch_array($result)) {
                                     ?>
                                         <tr>
@@ -65,11 +59,11 @@ if($acao = 'deletar'){
                                             <td class="d-flex justify-content-center align-items-center">
                                                 <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff; margin-right: 10px;" title="Editar" onclick="editaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
 
-                                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Excluir" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash-can"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Excluir" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                 <?php
-                                    }
+                                  
                                 }
                                 ?>
                             </tbody>

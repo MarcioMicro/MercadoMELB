@@ -52,7 +52,7 @@ $resultado_vendas = mysqli_query($conect, $query_vendas);
                    ?> 
                             <tr>
                             <th scope="row"><?php print $dados['id']; ?></th>
-                            <td><?php print $dados['data_venda']; ?></td>
+                            <td><?php print date("d/m/Y", strtotime($dados['data_venda'])); ?></td>
                             <td><?php print $dados['valor_total']; ?></td>
                             <td><?php print $dados['nome_func']; ?></td>
                             <td><?php print $dados['nome_cliente']; ?></td>

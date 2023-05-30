@@ -83,7 +83,7 @@ $num_result=mysqli_num_rows($sql_query_produtos);
                 </main>
 </div>
 </div>
-
+</body>
 
 
 

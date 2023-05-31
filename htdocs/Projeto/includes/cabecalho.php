@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="css/select2.min.css">
 <link rel="stylesheet" href="css/select2-bootstrap-5-theme.min.css">
 <link rel="stylesheet" href="css/font-awesome-all.min.css">
-<script src="js/Chart.min.js"></script>
+
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="includes/sb-admin/js/sb-admin-2.min.js"></script>
 <script src="js/sweetalert2.all.min.js"></script>
@@ -17,6 +17,8 @@
 <script src="js/select2.full.min.js"></script>
 <script src="js/pt-BR.js"></script>
 <script src="js/jquery.maskMoney.min.js"></script>
+<script src="js/chart.js/Chart.js"></script>
+
 <meta charset="iso-8859-1">
 
 

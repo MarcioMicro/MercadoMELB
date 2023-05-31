@@ -59,7 +59,7 @@ include "includes/cabecalho.php";
         enviaRelatorio = (nome_relatorio) => {
         document.form_relatorio.nome_relatorio.value = nome_relatorio;
         document.form_relatorio.action = "gera_relatorio.php";
-        document.form_relatorio.method = "get";
+        document.form_relatorio.method = "post";
         document.form_relatorio.submit();
     }
 

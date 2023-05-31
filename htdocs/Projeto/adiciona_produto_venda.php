@@ -59,14 +59,16 @@ if ($acao == "adicionar") {
 } elseif ($acao == "concluir") {
     $agora = date("Y-m-d H:i:s");
 
-    $query_produtos = "SELECT id, quantidade, valor_total FROM venda_produto WHERE id_vendas = $id_venda";
+    $query_produtos = "SELECT produtos.id, quantidade, valor_total FROM venda_produto INNER JOIN produtos ON venda_produto.id_produtos = produtos.id WHERE id_vendas = $id_venda";
     $result_produtos = mysqli_query($conect, $query_produtos);
     $valor_total = 0;
     while ($dados_prod = mysqli_fetch_array($result_produtos)) {
-        $query_update_prod = "UPDATE produtos SET estoque = estoque - " . $dados_prod['quantidade'] . " WHERE id = " . $dados_prod['id'] . " LIMIT 1";
+        $query_update_prod = "UPDATE produtos SET estoque = estoque - " . $dados_prod['quantidade'] . " WHERE id = " . $dados_prod['id'] . "";
+        //print $query_update_prod;
         $result_update_prod = mysqli_query($conect, $query_update_prod);
         $valor_total += $dados_prod['valor_total'];
     }
+    //exit();
 
     $query = "INSERT INTO vendas (id, data_venda, valor_total, id_funcionarios, id_clientes) VALUES 
     (

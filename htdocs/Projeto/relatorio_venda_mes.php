@@ -26,22 +26,7 @@ $query_produto_mes = "SELECT
 $result_produto_mes = mysqli_query($conect, $query_produto_mes);
 
     ?>
-<style>
-@media print{
-    @page{
-        size: 270mm 350mm;
-    }
-    .esconde{
-        display: none;
-    }
-
-    .btn{
-        display: none;
-    }
-}
-
-</style>
-<main>
+<main class= "esconde">
     <div class="container-fluid">
         <br>
         <div class="col-md-12 listagem-produtos">

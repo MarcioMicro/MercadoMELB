@@ -63,7 +63,12 @@ if ($acao == "adicionar") {
     $result_produtos = mysqli_query($conect, $query_produtos);
     $valor_total = 0;
     while ($dados_prod = mysqli_fetch_array($result_produtos)) {
-        $query_update_prod = "UPDATE produtos SET estoque = estoque - " . $dados_prod['quantidade'] . " WHERE id = " . $dados_prod['id'] . "";
+        $query_update_prod = "UPDATE produtos SET estoque = 
+        CASE
+            WHEN estoque - " . $dados_prod['quantidade'] . " < 0 THEN 0
+            ELSE estoque - " . $dados_prod['quantidade'] . "
+        END 
+        WHERE id = " . $dados_prod['id'] . "";
         //print $query_update_prod;
         $result_update_prod = mysqli_query($conect, $query_update_prod);
         $valor_total += $dados_prod['valor_total'];

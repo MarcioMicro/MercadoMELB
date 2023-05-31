@@ -26,22 +26,8 @@ $query_produto_semana = "SELECT
 $result_produto_semana = mysqli_query($conect, $query_produto_semana);
 
     ?>
-<style>
-@media print{
-    @page{
-        size: 270mm 350mm;
-    }
-    .esconde{
-        display: none;
-    }
 
-    .btn{
-        display: none;
-    }
-}
-
-</style>
-<main>
+<main class= "esconde">
     <div class="container-fluid">
         <br>
         <div class="col-md-12 listagem-produtos">

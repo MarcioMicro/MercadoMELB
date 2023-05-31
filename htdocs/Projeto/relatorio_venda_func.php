@@ -25,21 +25,7 @@ if ($id_func != '') {
 }
 ?>
 
-<style>
-@media print{
-    @page{
-        size: 270mm 350mm;
-    }
-    .esconde{
-        display: none;
-    }
 
-    .btn{
-        display: none;
-    }
-}
-
-</style>
 
 <main class="esconde">
     <div class="container-fluid">

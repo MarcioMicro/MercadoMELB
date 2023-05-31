@@ -26,22 +26,8 @@ if ($data_final != '' and $data_inicial != '') {
     $result_produto_datas = mysqli_query($conect, $query_produto_datas);
 }
 ?>
-<style>
-@media print{
-    @page{
-        size: 270mm 350mm;
-    }
-    .esconde{
-        display: none;
-    }
 
-    .btn{
-        display: none;
-    }
-}
-
-</style>
-<main>
+<main class= "esconde">
     <div class="container-fluid">
         <div class="col-md-12 listagem-produtos">
             <h1 class="mt-4">Gerar Relatório</h1>

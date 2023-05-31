@@ -3,11 +3,13 @@
     src: url('../fonts/mulish/Mulish-SemiBold.ttf');
 }
 
+
+
 * {
     font-family: 'Mulish-SemiBold', sans-serif;
 }
 
-main{
+body{
     background-color: #f8f9fc;
 }
 

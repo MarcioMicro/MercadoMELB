@@ -86,6 +86,8 @@ if($acao = 'deletar'){
 </div>
 </main>
 
+
+
 <form name="edita_produto">
     <input type="hidden" name="id_produto" id="id_produto">
 </form>

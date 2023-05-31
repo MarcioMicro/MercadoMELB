@@ -36,7 +36,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Funcion&aacute;rio respons&aacute;vel pela venda</label>
-                                <select class="form-select" name="funcionario" id="funcionario">
+                                <select class="select2 form-select" name="funcionario" id="funcionario_select">
                                     <option value="">Selecione</option>
                                     <?php $query = "SELECT id,nome,cargo,departamento,salario,data_admissao,data_nascimento FROM funcionarios";
 
@@ -49,7 +49,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                             </div>
                             <div class="col-md-6">
                                 <label>Cliente Comprador</label>
-                                <select class="form-select" name="cliente" id="cliente">
+                                <select class="select2 form-select" name="cliente" id="cliente_select">
                                     <option value="">Selecione</option>
                                     <?php $query = "SELECT clientes.id,clientes.nome,cpf,telefone,email, cidades.cidade, cidades.estado FROM clientes 
                         INNER JOIN enderecos ON clientes.id_enderecos = enderecos.id
@@ -123,7 +123,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                         <table class="table table table-bordered table-hover" id="venda">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id do Produto</th>
+                                    <th scope="col">Id</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Marca</th>
                                     <th scope="col">Pre&ccedil;o de Venda</th>
@@ -136,9 +136,12 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                                 <?php
                                 $query = "SELECT produtos.*, venda_produto.quantidade FROM venda_produto INNER JOIN produtos ON venda_produto.id_produtos = produtos.id WHERE id_vendas = $id_venda";
                                 $result = mysqli_query($conect, $query);
-                                while ($dados = mysqli_fetch_array($result)) { ?>
+                                $CONT = 0;
+                                while ($dados = mysqli_fetch_array($result)) {
+                                    $CONT++;
+                                ?>
                                     <tr>
-                                        <th scope="row"><?php print $dados['id'] ?></th>
+                                        <th scope="row"><?php print $CONT ?></th>
                                         <td><?php print $dados['nome'] ?></td>
                                         <td><?php print $dados['marca'] ?></td>
                                         <td>R$ <?php print $dados['preco_venda'] ?></td>
@@ -151,6 +154,13 @@ $num_result = mysqli_num_rows($sql_query_produtos);
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="row" style="padding-top: 40px">
+                        <div class="col-md-12">
+                            <button class="btn btn-danger" onclick="excluirVenda()" id="exclui_btn" name="exclui_btn">Cancelar Venda</button>
+                            <button class="btn btn-success" onclick="concluirVenda($('#funcionario_select').val(), $('#cliente_select').val())" id="conclui_btn" name="conclui_btn">Concluir Venda</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -192,9 +202,13 @@ $num_result = mysqli_num_rows($sql_query_produtos);
 
 
 
-<script type="text/javascript" language ="Javascript">
+<script type="text/javascript" language="Javascript">
     $numero = 0;
     adicionarCarrinho = (id) => {
+        if ($("#quantidade_produto-" + id).val() <= 0) {
+            Swal.fire("", "Voc&#234; n&#227;o pode adicionar " + $("#quantidade_produto-" + id).val() + " produtos", "warning");
+            return false;
+        }
         $.ajax({
             method: "POST",
             url: 'adiciona_produto_venda.php',
@@ -208,14 +222,13 @@ $num_result = mysqli_num_rows($sql_query_produtos);
         }).done(function(response) {
             $('#card_produtos_venda').remove();
             if ($numero == 0) {
-                $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                $(".listagem-produtos").append(response);
             } else {
-
-                $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                $(".listagem-produtos").append(response);
             }
+
             $numero++;
         })
-
     }
 
     removerCarrinho = (id) => {
@@ -224,10 +237,10 @@ $num_result = mysqli_num_rows($sql_query_produtos);
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             showDenyButton: true,
-            denyButtonText: 'Quantidade Espec&iacute;fica',    
+            denyButtonText: 'Quantidade Espec&iacute;fica',
             confirmButtonText: 'Remover Todos',
             html: 'Deseja remover TODOS os itens deste produto ou remover uma quantidade espec&iacute;fica?'
-           
+
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -242,12 +255,10 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                 }).done(function(response) {
                     $('#card_produtos_venda').remove();
                     if ($numero == 0) {
-                        $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                        $(".listagem-produtos").append(response);
                     } else {
-
-                        $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                        $(".listagem-produtos").append(response);
                     }
-
                 })
             } else if (result.isDenied) {
                 $.ajax({
@@ -259,7 +270,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                         id_venda: <?php print $id_venda ?>
                     }
                 }).done(function(response) {
-                  Swal.fire({
+                    Swal.fire({
                         icon: 'question',
                         text: 'Remover quantos itens?',
                         input: 'number',
@@ -285,9 +296,9 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                             }).done(function(response) {
                                 $('#card_produtos_venda').remove();
                                 if ($numero == 0) {
-                                    $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                                    $(".listagem-produtos").append(response);
                                 } else {
-                                    $('.listagem-produtos').html($('.listagem-produtos').html() + response)
+                                    $(".listagem-produtos").append(response);
                                 }
 
                             })
@@ -297,43 +308,74 @@ $num_result = mysqli_num_rows($sql_query_produtos);
 
             }
         })
+    }
 
+    concluirVenda = (func, cli) => {
+        if (func == "") {
+            Swal.fire("", "Selecione o funcion&#225;rio respons&#225;vel pela venda", "warning");
+            return false;
+        }
+        if (cli == "") {
+            Swal.fire("", "Selecione o cliente respons&#225;vel pela compra", "warning");
+            return false;
+        }
+        $.ajax({
+            method: "POST",
+            url: 'adiciona_produto_venda.php',
+            data: {
+                valor: "checar_rows",
+                id_venda: <?php print $id_venda ?>
+            },
+            success: (response) => {
+                if (response == "0") {
+                    Swal.fire("", "N&#227;o h&#225; produtos adicionados &#224; esta venda", "warning");
+                    return false;
+                } else {
+                    $.ajax({
+                        method: "POST",
+                        url: 'adiciona_produto_venda.php',
+                        data: {
+                            valor: "concluir",
+                            id_venda: <?php print $id_venda ?>,
+                            id_cli: cli,
+                            id_func: func
+                        }
+                    }).done(function(response) {
+                        Swal.fire("", "Venda conclu&#237;da com sucesso", "success");
+                        setTimeout(() => {
+                            // window.location.href = "pag_vendas.php";
+                        }, 2000);
+                    })
+                }
+            }
+        });
 
     }
 
-    /*  $(":input").bind('keyup mouseup', function() {
-        if ($('#quantidade_produto-*').val() != '') {
-
-            $(document).ready(function() {
-                let contador = 0;
-                let itemA;
-                $('.input_quant').each(function() {
-                    if ($(this).val() != '' && $(this).val() != 0) {
-                        let item = document.createElement('tr');
-
-
-                        itemA = document.createElement('td');
-                        itemA.innerHTML = $(this).val();
-
-                        item.appendChild(itemA);
-
-
-                        document.getElementById('vendas_body').appendChild(item);
-                        contador++;
-
-
+    excluirVenda = () => {
+        Swal.fire({
+            text: "Deseja realmente cancelar a venda?",
+            icon: "question",
+            showDenyButton: true,
+            denyButtonText: "N&#227;o",
+            confirmButtonText: "Sim"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: "POST",
+                    url: 'adiciona_produto_venda.php',
+                    data: {
+                        valor: "excluir",
+                        id_venda: <?php print $id_venda ?>
                     }
-                });
-            });
+                }).done(function(response) {
+                    Swal.fire("", "Venda cancelada", "error");
+                    setTimeout(() => {
+                        window.location.href = "pag_vendas.php";
+                    }, 2000);
+                })
+            }
+        })
 
-        }
-    }); */
-
-
-    //event key enter = 13
-    // id da busca = dados_filter
-    /*
-
-
-    */
+    }
 </script>

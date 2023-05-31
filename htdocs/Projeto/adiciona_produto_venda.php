@@ -1,5 +1,7 @@
 <?php
 //print_r($_POST);
+date_default_timezone_set('America/Sao_Paulo');
+ini_set('date.timezone', 'America/Sao_Paulo');
 error_reporting(0);
 
 session_name('mercado');
@@ -12,8 +14,9 @@ $id_prod = $_POST['id'];
 $cont = $_POST['cont'];
 $id_venda = $_POST['id_venda'];
 $quantidade = $_POST['quantidade'];
-
 $remove_tudo = $_POST['remove_tudo'];
+$id_cli = $_POST['id_cli'];
+$id_func = $_POST['id_func'];
 
 $query = "SELECT preco_venda FROM produtos WHERE id = $id_prod";
 $result = mysqli_query($conect, $query);
@@ -28,7 +31,7 @@ $num_rows = mysqli_num_rows($result);
 
 if ($acao == "adicionar") {
     if ($num_rows > 0) {
-        $query = "UPDATE venda_produto SET quantidade = ". $dados_produto['quantidade'] . "  + $quantidade, valor_unit = $valor_venda, valor_total = $valor_venda * (". $dados_produto['quantidade'] . "  + $quantidade) WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
+        $query = "UPDATE venda_produto SET quantidade = " . $dados_produto['quantidade'] . "  + $quantidade, valor_unit = $valor_venda, valor_total = $valor_venda * (" . $dados_produto['quantidade'] . "  + $quantidade) WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
     } else {
         if ($quantidade != 0) {
             $query = "INSERT INTO venda_produto (quantidade, valor_unit, valor_total, id_vendas, id_produtos) VALUES 
@@ -43,17 +46,50 @@ if ($acao == "adicionar") {
         }
     }
     //print $query;
-    
+
 } elseif ($acao == "remover") {
     if ($num_rows > 0) {
-        
-        if ($remove_tudo != '' or $dados_produto['quantidade'] - $quantidade <= 0) $query = "DELETE FROM venda_produto WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
-        else $query = "UPDATE venda_produto SET quantidade = ". $dados_produto['quantidade'] . "  - $quantidade, valor_unit = $valor_venda, valor_total = $valor_venda * (". $dados_produto['quantidade'] . "  - $quantidade) WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
 
-        
+        if ($remove_tudo != '' or $dados_produto['quantidade'] - $quantidade <= 0) $query = "DELETE FROM venda_produto WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
+        else $query = "UPDATE venda_produto SET quantidade = " . $dados_produto['quantidade'] . "  - $quantidade, valor_unit = $valor_venda, valor_total = $valor_venda * (" . $dados_produto['quantidade'] . "  - $quantidade) WHERE id_vendas = $id_venda AND id_produtos = $id_prod";
     }
 } elseif ($acao == "checar") {
     print $dados_produto['quantidade'];
+    exit();
+} elseif ($acao == "concluir") {
+    $agora = date("Y-m-d H:i:s");
+
+    $query_produtos = "SELECT id, quantidade, valor_total FROM venda_produto WHERE id_vendas = $id_venda";
+    $result_produtos = mysqli_query($conect, $query_produtos);
+    $valor_total = 0;
+    while ($dados_prod = mysqli_fetch_array($result_produtos)) {
+        $query_update_prod = "UPDATE produtos SET estoque = estoque - " . $dados_prod['quantidade'] . " WHERE id = " . $dados_prod['id'] . " LIMIT 1";
+        $result_update_prod = mysqli_query($conect, $query_update_prod);
+        $valor_total += $dados_prod['valor_total'];
+    }
+
+    $query = "INSERT INTO vendas (id, data_venda, valor_total, id_funcionarios, id_clientes) VALUES 
+    (
+        '',
+        '$agora',
+        '$valor_total',
+        '$id_func',
+        '$id_cli'
+    )            ";
+    print $query;
+    $result = mysqli_query($conect, $query);
+    exit();
+} elseif ($acao == "checar_rows") {
+
+    $select_quant_prod = "SELECT * FROM venda_produto WHERE id_vendas = '$id_venda'";
+    $result_quant_prod = mysqli_query($conect, $select_quant_prod);
+    $num_rows_quant_prod = mysqli_num_rows($result_quant_prod);
+    print $num_rows_quant_prod;
+    exit();
+} elseif ($acao == "excluir") {
+
+    $query = "DELETE FROM venda_produto WHERE id_vendas = '$id_venda'";
+    mysqli_query($conect, $query);
     exit();
 }
 
@@ -68,7 +104,7 @@ mysqli_query($conect, $query);
             <table class="table table table-bordered table-hover" id="venda">
                 <thead>
                     <tr>
-                        <th scope="col">Id do Produto</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Marca</th>
                         <th scope="col">Pre&ccedil;o de Venda</th>
@@ -81,9 +117,12 @@ mysqli_query($conect, $query);
                     <?php
                     $query = "SELECT produtos.*, venda_produto.quantidade FROM venda_produto INNER JOIN produtos ON venda_produto.id_produtos = produtos.id WHERE id_vendas = $id_venda";
                     $result = mysqli_query($conect, $query);
-                    while ($dados = mysqli_fetch_array($result)) { ?>
+                    $CONT = 0;
+                    while ($dados = mysqli_fetch_array($result)) {
+                        $CONT++;
+                    ?>
                         <tr>
-                            <th scope="row"><?php print $dados['id'] ?></th>
+                            <th scope="row"><?php print $CONT ?></th>
                             <td><?php print $dados['nome'] ?></td>
                             <td><?php print $dados['marca'] ?></td>
                             <td>R$ <?php print $dados['preco_venda'] ?></td>
@@ -96,6 +135,13 @@ mysqli_query($conect, $query);
 
                 </tbody>
             </table>
+        </div>
+        <div class="row" style="padding-top: 40px">
+            <div class="col-md-12">
+                <button class="btn btn-danger" onclick="excluirVenda()" id="exclui_btn" name="exclui_btn">Cancelar Venda</button>
+                <button class="btn btn-success" onclick="concluirVenda($('#funcionario_select').val(), $('#cliente_select').val())" id="conclui_btn" name="conclui_btn">Concluir Venda</button>
+            </div>
+
         </div>
     </div>
 

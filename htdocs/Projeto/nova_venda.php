@@ -343,7 +343,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                     }).done(function(response) {
                         Swal.fire("", "Venda conclu&#237;da com sucesso", "success");
                         setTimeout(() => {
-                            // window.location.href = "pag_vendas.php";
+                            window.location.href = "pag_vendas.php";
                         }, 2000);
                     })
                 }

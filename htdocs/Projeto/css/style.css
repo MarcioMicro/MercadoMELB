@@ -1,6 +1,10 @@
+@font-face {
+    font-family: 'Mulish-SemiBold';
+    src: url('../fonts/mulish/Mulish-SemiBold.ttf');
+}
+
 * {
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish-SemiBold', sans-serif;
 }
 
 main{

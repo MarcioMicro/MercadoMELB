@@ -17,7 +17,7 @@
 <script src="js/select2.full.min.js"></script>
 <script src="js/pt-BR.js"></script>
 <script src="js/jquery.maskMoney.min.js"></script>
-<script src="js/chart.js/Chart.js"></script>
+<script src="js/chart.js/chart.umd.js"></script>
 
 <meta charset="iso-8859-1">
 

@@ -53,7 +53,7 @@ if($acao = 'deletar'){
                                             <td><?php print $dados['nome']; ?></td>
                                             <td><?php print $dados['cargo']; ?></td>
                                             <td><?php print $dados['departamento']; ?></td>
-                                            <td><?php print $dados['salario']; ?></td>
+                                            <td>R$ <?php print $dados['salario']; ?></td>
                                             <td><?php print $dados['data_admissao']; ?></td>
                                             <td><?php print $dados['data_nascimento']; ?></td>
                                             <td class="d-flex justify-content-center align-items-center">

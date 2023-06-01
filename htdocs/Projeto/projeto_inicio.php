@@ -146,25 +146,27 @@ $yValuesJSON = json_encode($yValues);
       borderWidth: 2,
       weight: 1,
       backgroundColor: [
-        "#4D94FF",
-        "#3385FF",
-        "#2674FF",
-        "#1964FF",
-        "#0D53FF",
-        "#0043FF",
-        "#0033CC",
-        "#002699",
-        "#001966",
-        "#001233",
-        "#000B1A",
-        "#00060D"
+        "#B7DFFD",
+        "#9AC4FC",
+        "#7CA9FA",
+        "#5E8EF9",
+        "#4164F7",
+        "#2349F5",
+        "#162EE4",
+        "#0E24C3",
+        "#081A9E",
+        "#040F79",
+        "#020954",
+        "#010433"
       ]
     }],
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       locale: 'br-BR',
       scales: {
         y: {
-          beginAtZero: true,
+
           ticks: {
             callback: (value, index, values) => {
               return new Intl.NumberFormat('br-BR', {
@@ -172,6 +174,17 @@ $yValuesJSON = json_encode($yValues);
                 currency: 'BRL',
                 maximumSignificantDigits: 3
               }).format(value);
+            }
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var label = myChart_cidade.data.labels[tooltipItem.datasetIndex];
+              var value = myChart_cidade.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+              return label + ": R$ " + value;
             }
           }
         }
@@ -184,7 +197,38 @@ $yValuesJSON = json_encode($yValues);
   var ctx_cidade = document.getElementById('myChart_cidade').getContext('2d');
   var myChart_cidade = new Chart(ctx_cidade, {
     type: 'line',
-    data: myData_cidade
+    data: myData_cidade,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      locale: 'br-BR',
+      scales: {
+        y: {
+
+          ticks: {
+            callback: (value, index, values) => {
+              return new Intl.NumberFormat('br-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                maximumSignificantDigits: 3
+              }).format(value);
+            }
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              // var label = myChart_cidade.data.labels[tooltipItem.dataIndex];
+              var label = "Total Vendas"
+              var value = myChart_cidade.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+              return label + ": R$ " + value;
+            }
+          }
+        }
+      }
+    }
   });
 
   // Function runs on chart type select update
@@ -196,6 +240,8 @@ $yValuesJSON = json_encode($yValues);
         type: document.getElementById("chartType_cidade").value,
         data: myData_cidade,
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           locale: 'br-BR',
           scales: {
             y: {
@@ -210,6 +256,41 @@ $yValuesJSON = json_encode($yValues);
                 }
               }
             }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  // var label = myChart_cidade.data.labels[tooltipItem.dataIndex];
+                  var label = "Total Vendas"
+                  var value = myChart_cidade.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                  return label + ": R$ " + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    } else if (document.getElementById("chartType_cidade").value == "doughnut") {
+      myChart_cidade.destroy();
+      myChart_cidade = new Chart(ctx_cidade, {
+        type: document.getElementById("chartType_cidade").value,
+        data: myData_cidade,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  // var label = myChart_cidade.data.labels[tooltipItem.dataIndex];
+                  var label = "Total Vendas"
+                  var value = myChart_cidade.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                  return label + ": R$ " + value;
+                }
+              }
+            }
           }
         }
       });
@@ -217,7 +298,33 @@ $yValuesJSON = json_encode($yValues);
       myChart_cidade.destroy();
       myChart_cidade = new Chart(ctx_cidade, {
         type: document.getElementById("chartType_cidade").value,
-        data: myData_cidade
+        data: myData_cidade,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  // var label = myChart_cidade.data.labels[tooltipItem.dataIndex];
+                  var label = "Total Vendas"
+                  var value = myChart_cidade.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                  return label + ": R$ " + value;
+                }
+              }
+            }
+          },
+          scales: {
+            r: {
+              ticks: {
+                callback: (value, tick, values) => {
+                  return "R$ " + value;
+                }
+              }
+            }
+          }
+        }
       });
     }
   };

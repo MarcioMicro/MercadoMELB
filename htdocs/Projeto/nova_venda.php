@@ -38,7 +38,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                                 <label>Funcion&aacute;rio respons&aacute;vel pela venda</label>
                                 <select class="select2 form-select" name="funcionario" id="funcionario_select">
                                     <option value="">Selecione</option>
-                                    <?php $query = "SELECT id,nome,cargo,departamento,salario,data_admissao,data_nascimento FROM funcionarios";
+                                    <?php $query = "SELECT funcionarios.id,nome,cargo,departamento,salario,data_admissao,data_nascimento FROM funcionarios INNER JOIN niveis_acesso ON funcionarios.id = niveis_acesso.id_func  WHERE niveis_acesso.acesso_vendas = 's'";
 
                                     $result = mysqli_query($conect, $query);
                                     while ($dados = mysqli_fetch_array($result)) {

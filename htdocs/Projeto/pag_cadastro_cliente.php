@@ -20,23 +20,59 @@ if ($_POST['id_cli'] != "") {
     $cidade = $dados_cli['id_cidades'];
     $estado = $dados_cli['estado'];
     $endereco = $dados_cli['id_enderecos'];
+    $estado_novo = $_POST['estado_novo'];
+    $cidade_nova = $_POST['cidade_nova'];
+    $endereco_numero = $_POST['endereco_numero'];
+    $endereco_bairro = $_POST['endereco_bairro'];
+    $endereco_CEP = $_POST['endereco_CEP'];
+    $endereco_rua = $_POST['endereco_rua'];
 } else {
 
 
-$nome = $_POST['nome_cli'];
-$cpf = $_POST['cpf_cli'];
-$celular = $_POST['celular_cli'];
-$nasc = $_POST['nascimento_cli'];
-$email = $_POST['email_cli'];
-$cidade = $_POST['cidade_cli'];
-$estado = $_POST['cidade_estado'];
-$endereco = $_POST['endereco_cli'];
-$estado_novo = $_POST['estado_novo'];
-$cidade_nova = $_POST['cidade_nova'];
-$endereco_numero = $_POST['endereco_numero'];
-$endereco_bairro = $_POST['endereco_bairro'];
-$endereco_CEP = $_POST['endereco_CEP'];
-$endereco_rua = $_POST['endereco_rua'];
+    $nome = $_POST['nome_cli'];
+    $cpf = $_POST['cpf_cli'];
+    $celular = $_POST['celular_cli'];
+    $nasc = $_POST['nascimento_cli'];
+    $email = $_POST['email_cli'];
+    $cidade = $_POST['cidade_cli'];
+    $estado = $_POST['cidade_estado'];
+    $endereco = $_POST['endereco_cli'];
+    $estado_novo = $_POST['estado_novo'];
+    $cidade_nova = $_POST['cidade_nova'];
+    $endereco_numero = $_POST['endereco_numero'];
+    $endereco_bairro = $_POST['endereco_bairro'];
+    $endereco_CEP = $_POST['endereco_CEP'];
+    $endereco_rua = $_POST['endereco_rua'];
+}
+
+if ($dados_cli) {
+    
+    if ($_POST['nome_cli'] != $dados_cli['nome'] and $_POST['nome_cli'] != '') {
+        $nome = $_POST['nome_cli'];
+        
+    }
+
+    if ($dados_cli['cpf'] != $_POST['cpf_cli'] and $_POST['cpf_cli'] != '') {
+        $cpf = $_POST['cpf_cli'];
+    }
+    if ($dados_cli['telefone'] != $_POST['celular_cli'] and $_POST['celular_cli'] != '') {
+        $celular = $_POST['celular_cli'];
+    }
+    if ($dados_cli['dataNasc'] != $_POST['nascimento_cli'] and $_POST['nascimento_cli'] != '') {
+        $nasc = $_POST['nascimento_cli'];
+    }
+    if ($dados_cli['email'] != $_POST['email_cli'] and $_POST['email_cli'] != '') {
+        $email = $_POST['email_cli'];
+    }
+    if ($dados_cli['id_cidades'] != $_POST['cidade_cli'] and $_POST['cidade_cli'] != '') {
+        $cidade = $_POST['cidade_cli'];
+    }
+    if ($dados_cli['estado'] != $_POST['cidade_estado'] and $_POST['cidade_estado'] != '') {
+        $estado = $_POST['cidade_estado'];
+    }
+    if ($dados_cli['id_enderecos'] != $_POST['endereco_cli'] and $_POST['endereco_cli'] != '') {
+        $endereco = $_POST['endereco_cli'];
+    }
 }
 ?>
 
@@ -44,7 +80,8 @@ $endereco_rua = $_POST['endereco_rua'];
 <main>
     <div class="container-fluid">
 
-        <h1 class="mt-4"><?php if ($_POST['acao'] != "editar") print "Cadastro"; else print "Edi&ccedil;&atilde;o"; ?> de Clientes</h1>
+        <h1 class="mt-4"><?php if ($_POST['acao'] != "editar") print "Cadastro";
+                            else print "Edi&ccedil;&atilde;o"; ?> de Clientes</h1>
         <br>
 
         <form name="cadastro" id="cadastro" method="post">
@@ -79,7 +116,7 @@ $endereco_rua = $_POST['endereco_rua'];
                             <input type="email" class="form-control" id="email_cli" name="email_cli" value="<?php print $email ?>">
                         </div>
 
-                        
+
                         <div class="col-md-3">
                             <label for="cidade_estado" class="form-label">UF</label>
                             <select class="form-select" id="cidade_estado" name="cidade_estado" onchange="submit()">
@@ -100,38 +137,38 @@ $endereco_rua = $_POST['endereco_rua'];
                         <?php if ($estado == "X") { ?>
                             <div class="col-md-3">
                                 <label for="estado_novo" class="form-label">Qual?</label>
-                                <input type="text" class="form-control" id="estado_novo" name="estado_novo" maxlength="2" value = "<?php print $estado_novo ?>" >
+                                <input type="text" class="form-control" id="estado_novo" name="estado_novo" maxlength="2" value="<?php print $estado_novo ?>">
                             </div>
                     </div>
                     <div class="row" style="padding: 10px">
                     <?php } ?>
 
 
-                        <div class="col-md-3">
-                            <label for="cidade_cli" class="form-label">Cidade</label>
-                            <select class="form-select" id="cidade_cli" name="cidade_cli" onchange="submit()">
-                                <option value="">Selecione</option>
-                                <?php
-                                $query_cidade = "SELECT id, cidade, estado FROM cidades WHERE estado = '$estado' ORDER BY cidade";
-                                $result_cidade = mysqli_query($conect, $query_cidade);
+                    <div class="col-md-3">
+                        <label for="cidade_cli" class="form-label">Cidade</label>
+                        <select class="form-select" id="cidade_cli" name="cidade_cli" onchange="submit()">
+                            <option value="">Selecione</option>
+                            <?php
+                            $query_cidade = "SELECT id, cidade, estado FROM cidades WHERE estado = '$estado' ORDER BY cidade";
+                            $result_cidade = mysqli_query($conect, $query_cidade);
 
-                                while ($dados_cidade = mysqli_fetch_array($result_cidade)) { ?>
-                                    <option <?php if ($cidade == $dados_cidade['id']) print "selected"; ?> value="<?php print $dados_cidade['id'] ?>"><?php print $dados_cidade['cidade'] ?></option>
-                                <?php
-                                }
-                                ?>
-                                <option <?php if ($cidade == "X") print "selected" ?> value="X">Outra</option>
-                            </select>
+                            while ($dados_cidade = mysqli_fetch_array($result_cidade)) { ?>
+                                <option <?php if ($cidade == $dados_cidade['id']) print "selected"; ?> value="<?php print $dados_cidade['id'] ?>"><?php print $dados_cidade['cidade'] ?></option>
+                            <?php
+                            }
+                            ?>
+                            <option <?php if ($cidade == "X") print "selected" ?> value="X">Outra</option>
+                        </select>
+                    </div>
+
+                    <?php if ($cidade == "X") { ?>
+                        <?php if ($estado != "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
+                        <div class="col-md-3">
+                            <label for="cidade_nova" class="form-label">Qual?</label>
+                            <input type="text" class="form-control" id="cidade_nova" name="cidade_nova" value="<?php print $cidade_nova ?>">
                         </div>
 
-                        <?php if ($cidade == "X") { ?>
-                            <?php if ($estado != "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
-                            <div class="col-md-3">
-                                <label for="cidade_nova" class="form-label">Qual?</label>
-                                <input type="text" class="form-control" id="cidade_nova" name="cidade_nova" value= "<?php print $cidade_nova ?>">
-                            </div>
-              
-                  
+
                     <?php } ?>
 
                     <?php if ($estado != "X" and $cidade != "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
@@ -148,31 +185,31 @@ $endereco_rua = $_POST['endereco_rua'];
                             <?php
                             }
                             ?>
-                            <option <?php if ($endereco == "X") print "selected" ; ?> value="X">Outro</option>
+                            <option <?php if ($endereco == "X") print "selected"; ?> value="X">Outro</option>
                         </select>
                     </div>
                     <?php if ($endereco == "X") { ?>
-                      
-                            <div class="col-md-3">
-                                <label for="endereco_rua" class="form-label">Rua</label>
-                                <input type="text" class="form-control" id="endereco_rua" name="endereco_rua" value ="<?php print $endereco_rua ?>">
-                            </div>
-                            <?php if ($estado == "X" and $cidade == "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
-                            <div class="col-md-3">
-                                <label for="endereco_numero" class="form-label">N&uacute;mero</label>
-                                <input type="tel" class="form-control" id="endereco_numero" name="endereco_numero" value ="<?php print $endereco_numero ?>">
-                            </div>
-                            <?php if (($estado != "X" and $cidade == "X") or ($estado == "X" and $cidade != "X")) print "</div><div class= 'row' style='padding:10px'>"; ?>
-                            <div class="col-md-3">
-                                <label for="endereco_bairro" class="form-label">Bairro</label>
-                                <input type="text" class="form-control" id="endereco_bairro" name="endereco_bairro" value ="<?php print $endereco_bairro ?>">
-                            </div>
-                            <?php if ($estado != "X" and $cidade != "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
-                            <div class="col-md-3">
-                                <label for="endereco_CEP" class="form-label">CEP</label>
-                                <input type="text" class="form-control" id="endereco_CEP" name="endereco_CEP" value ="<?php print $endereco_CEP ?>">
-                            </div>
-                    
+
+                        <div class="col-md-3">
+                            <label for="endereco_rua" class="form-label">Rua</label>
+                            <input type="text" class="form-control" id="endereco_rua" name="endereco_rua" value="<?php print $endereco_rua ?>">
+                        </div>
+                        <?php if ($estado == "X" and $cidade == "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
+                        <div class="col-md-3">
+                            <label for="endereco_numero" class="form-label">N&uacute;mero</label>
+                            <input type="tel" class="form-control" id="endereco_numero" name="endereco_numero" value="<?php print $endereco_numero ?>">
+                        </div>
+                        <?php if (($estado != "X" and $cidade == "X") or ($estado == "X" and $cidade != "X")) print "</div><div class= 'row' style='padding:10px'>"; ?>
+                        <div class="col-md-3">
+                            <label for="endereco_bairro" class="form-label">Bairro</label>
+                            <input type="text" class="form-control" id="endereco_bairro" name="endereco_bairro" value="<?php print $endereco_bairro ?>">
+                        </div>
+                        <?php if ($estado != "X" and $cidade != "X") print "</div><div class= 'row' style='padding:10px'>"; ?>
+                        <div class="col-md-3">
+                            <label for="endereco_CEP" class="form-label">CEP</label>
+                            <input type="text" class="form-control" id="endereco_CEP" name="endereco_CEP" value="<?php print $endereco_CEP ?>">
+                        </div>
+
                     <?php } ?>
 
                     </div>
@@ -287,7 +324,7 @@ $endereco_rua = $_POST['endereco_rua'];
             document.cadastro.celular_cli.focus();
             return false;
         }
-     
+
         if (document.cadastro.nascimento_cli.value == "") {
             document.cadastro.nascimento_cli.focus();
             Swal.fire("", "Preencha corretamente o campo Data de Nascimento", "warning");
@@ -300,7 +337,7 @@ $endereco_rua = $_POST['endereco_rua'];
             document.cadastro.email_cli.focus();
             return false;
         }
-      
+
         if (document.cadastro.cidade_estado.value == "") {
             document.cadastro.cidade_estado.focus();
             Swal.fire("", "O campo Estado n&#227;o pode estar vazio", "warning");
@@ -312,7 +349,7 @@ $endereco_rua = $_POST['endereco_rua'];
             Swal.fire("", "O campo Estado n&#227;o pode estar vazio", "warning");
             return (false);
         }
-        
+
         if (document.cadastro.cidade_cli.value == "") {
             document.cadastro.cidade_cli.focus();
             Swal.fire("", "O campo Cidade n&#227;o pode estar vazio", "warning");

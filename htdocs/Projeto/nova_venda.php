@@ -96,7 +96,7 @@ $num_result = mysqli_num_rows($sql_query_produtos);
                                         <th scope="row"><?php print $dados['id']; ?></th>
                                         <td><?php print $dados['nome']; ?></td>
                                         <td><?php print $dados['marca']; ?></td>
-                                        <td><?php print $dados['preco_venda']; ?></td>
+                                        <td>R$ <?php print $dados['preco_venda']; ?></td>
                                         <td><?php print $dados['cod_barras']; ?></td>
                                         <td>
                                             <input type="number" class="form-control input_quant" value="0" min="0" max="<?php print floor(doubleval($dados['estoque'])) ?>" name="quantidade_produto-<?php print $dados['id'] ?>" id="quantidade_produto-<?php print $dados['id'] ?>">

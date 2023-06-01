@@ -4,7 +4,6 @@ session_start();
 include "includes/cabecalho.php";
 include "includes/conect.php";
 
-
 $produto = $_POST['id_produto'];
 
 if ($_POST['id_produto'] != "") {
@@ -52,7 +51,7 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
                         </div>
                         <div class="col-md-4">
                             <label for="marca_prod" class="form-label">Marca</label>
-                            <input type="text" class="form-control" id="marca_prod" name="marca_prod" value="<?php print $dados['marca'] ?>">
+                            <input type="text" class="form-control" id="marca_prod" name="marca_produto" value="<?php print $dados['marca'] ?>">
                         </div>
                         <div class="col-md-4">
                             <label for="preco_produto" class="form-label">Preço Venda</label>
@@ -99,8 +98,8 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
                                 <?php } ?>
                             </select>
                         </div>
-
-
+                        <input type="hidden" name="acao" id="acao" value="<?php print $acao ?>">
+                        <input type="hidden" name="id_produto" id="id_produto" value="<?php print $produto ?>">            
                         <p>&nbsp;</p>
                         <div class="row buttons-cadastro">
 
@@ -193,4 +192,5 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
         document.cadastro_produto.method = "post";
         document.cadastro_produto.submit();
     }
+    
 </script>

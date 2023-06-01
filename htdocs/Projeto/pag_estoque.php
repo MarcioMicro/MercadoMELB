@@ -31,7 +31,7 @@ if($acao = 'deletar'){
                       <div class="card">
                         <div class="card-body">
                         <div class = "col-md-12 pb-5">
-                        <button class="btn btn-primary" onclick="window.location.href='edita_produto.php'"><i class ="fa fa-plus"></i> Cadastrar Novo Produto</button>
+                        <button class="btn btn-primary" onclick="window.location.href='pag_cadastro_produtos.php'"><i class ="fa fa-plus"></i> Cadastrar Novo Produto</button>
                         </div>
                         <div class="row">
                 <table class="table table table-bordered table-hover" id="dados">
@@ -87,9 +87,9 @@ if($acao = 'deletar'){
 </main>
 
 
-
 <form name="edita_produto">
     <input type="hidden" name="id_produto" id="id_produto">
+    <input type="hidden" name="acao" id="acao" value="editar">
 </form>
 
 <form name="deleta_produto">

@@ -5,10 +5,10 @@ include "includes/cabecalho.php";
 
 $acao = $_POST['acao'];
 
-if($acao = 'deletar'){
+if ($acao = 'deletar') {
 
-    $query_delete = "DELETE FROM funcionarios WHERE id = '" . $_POST["id_func"]. "'";
-    
+    $query_delete = "DELETE FROM funcionarios WHERE id = '" . $_POST["id_func"] . "'";
+
     $deletar = mysqli_query($conect, $query_delete);
     header("Location: funcionarios.php");
 }
@@ -21,8 +21,8 @@ if($acao = 'deletar'){
                 <h1 class="mt-4">Funcionários da Empresa</h1>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class = "col-md-12 pb-5">
-                        <button class="btn btn-primary" onclick="window.location.href='pag_cadastro_func.php'"><i class ="fa fa-plus"></i> Cadastrar Novo Funcionário</button>
+                        <div class="col-md-12 pb-5">
+                            <button class="btn btn-primary" onclick="window.location.href='pag_cadastro_func.php'"><i class="fa fa-plus"></i> Cadastrar Novo Funcionário</button>
                         </div>
                         <?php
                         include "includes/conect.php";
@@ -31,7 +31,7 @@ if($acao = 'deletar'){
                         $result = mysqli_query($conect, $query);
                         $num_result = mysqli_num_rows($result);
                         ?>
-                        <table class="table table table-bordered table-hover" id="dados">
+                        <table class="table table table-bordered table-hover" id="dados_func">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
@@ -45,25 +45,25 @@ if($acao = 'deletar'){
                                 </tr>
                             </thead>
                             <tbody>
-                              <?php
-                                    while ($dados = mysqli_fetch_array($result)) {
-                                    ?>
-                                        <tr>
-                                            <th scope="row"><?php print $dados['id']; ?></th>
-                                            <td><?php print $dados['nome']; ?></td>
-                                            <td><?php print $dados['cargo']; ?></td>
-                                            <td><?php print $dados['departamento']; ?></td>
-                                            <td><?php print $dados['salario']; ?></td>
-                                            <td><?php print $dados['data_admissao']; ?></td>
-                                            <td><?php print $dados['data_nascimento']; ?></td>
-                                            <td class="d-flex justify-content-center align-items-center">
-                                                <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff; margin-right: 10px;" title="Editar" onclick="editaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
-
-                                                <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Excluir" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
                                 <?php
-                                  
+                                while ($dados = mysqli_fetch_array($result)) {
+                                ?>
+                                    <tr>
+                                        <th scope="row"><?php print $dados['id']; ?></th>
+                                        <td><?php print $dados['nome']; ?></td>
+                                        <td><?php print $dados['cargo']; ?></td>
+                                        <td><?php print $dados['departamento']; ?></td>
+                                        <td>R$ <?php print str_replace(".", ",", $dados['salario']); ?></td>
+                                        <td><?php print date("d/m/Y", strtotime($dados['data_admissao'])); ?></td>
+                                        <td><?php print date("d/m/Y", strtotime($dados['data_nascimento'])); ?></td>
+                                        <td class="d-flex justify-content-center align-items-center">
+                                            <button type="button" class="btn btn-warning btn-sm btn-circle" style="color: #fff; margin-right: 10px;" title="Editar" onclick="editaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-pen"></i></button>
+
+                                            <button type="button" class="btn btn-danger btn-sm btn-circle" style="color: #fff" title="Excluir" onclick="deletaFunc(<?php print $dados['id']; ?>)"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                <?php
+
                                 }
                                 ?>
                             </tbody>
@@ -114,5 +114,48 @@ if($acao = 'deletar'){
         });
         return false;
     }
+</script>
 
+<script>
+    $('#dados_func').DataTable({
+        "language": {
+            "sProcessing": "Processando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "Não foram encontrados resultados",
+            "sEmptyTable": "Sem dados disponíveis nesta tabela",
+            "sInfo": "Mostrando registros de _START_ a _END_ em um total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros de 0 a 0 de um total de 0 registros",
+            "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Carregando...",
+            "oPaginate": {
+                "sFirst": "Primeiro",
+                "sLast": "Último",
+                "sNext": "Seguinte",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar de forma crescente",
+                "sSortDescending": ": Ordenar de forma decrescente"
+            }
+        },
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+                "type": "date-eu"
+            },
+            {
+                "type": "date-eu"
+            },
+            null
+
+        ]
+    });
 </script>

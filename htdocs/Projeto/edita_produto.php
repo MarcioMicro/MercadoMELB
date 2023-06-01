@@ -34,7 +34,7 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
 <main>
     <div class="container-fluid">
 
-        <h1 class="mt-4">Atualiza de Produtos</h1>
+        <h1 class="mt-4">Atualização de Produto</h1>
         <br>
 
         <form name="cadastro_produto" id="cadastro_produto">

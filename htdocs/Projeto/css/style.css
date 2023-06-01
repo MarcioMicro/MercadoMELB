@@ -3,6 +3,18 @@
     src: url('../fonts/mulish/Mulish-SemiBold.ttf');
 }
 
+@media print{
+    @page{
+        size: 270mm 350mm;
+    }
+    .esconde{
+        display: none;
+    }
+
+    .btn{
+        display: none;
+    }
+}
 
 
 * {

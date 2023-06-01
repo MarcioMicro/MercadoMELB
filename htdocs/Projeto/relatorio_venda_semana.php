@@ -27,7 +27,7 @@ $result_produto_semana = mysqli_query($conect, $query_produto_semana);
 
     ?>
 
-<main class= "esconde">
+<main>
     <div class="container-fluid">
         <br>
         <div class="col-md-12 listagem-produtos">
@@ -53,7 +53,7 @@ $result_produto_semana = mysqli_query($conect, $query_produto_semana);
                                     <tr>
                                         <th scope="row"><?php print $dados['id']; ?></th>
                                         <td><?php print $dados['data_venda']; ?></td>
-                                        <td><?php print $dados['valor_total']; ?></td>
+                                        <td><?php print "R$ " . number_format($dados['valor_total'], 2, ',', '.'); ?></td>
                                         <td><?php print $dados['nome_func']; ?></td>
                                         <td><?php print $dados['nome_cliente']; ?></td>
                                     </tr>
@@ -158,7 +158,7 @@ $result_produto_semana = mysqli_query($conect, $query_produto_semana);
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Unico</div>
+                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Único</div>
                                         <div class="h5 mb-0 font-weight-bold ">
                                             <?php print $qtd_clientes_unicos ?>
                                         </div>

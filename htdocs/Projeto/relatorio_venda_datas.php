@@ -3,8 +3,8 @@
 session_name('mercado');
 session_start();
 
-$data_inicial = $_POST['data_inicial'] . " 00:00:00";
-$data_final = $_POST['data_final'] . " 00:00:00";
+$data_inicial = $_POST['data_inicial'];
+$data_final = $_POST['data_final'];
 include "includes/conect.php";
 if ($data_final != '' and $data_inicial != '') {
     $query_produto_datas = "SELECT 
@@ -43,12 +43,12 @@ if ($data_final != '' and $data_inicial != '') {
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="data_inicial" class="form-label">Data Inicial</label>
-                                    <input type="date" class="form-control" id="data_inicial" name="data_inicial">
+                                    <input type="datetime-local" class="form-control" id="data_inicial" name="data_inicial">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="data_final" class="form-label">Data Final</label>
-                                    <input type="date" class="form-control" id="data_final" name="data_final">
+                                    <input type="datetime-local" class="form-control" id="data_final" name="data_final">
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@ if ($data_final != '' and $data_inicial != '') {
                                     <tr>
                                         <th scope="row"><?php print $dados['id']; ?></th>
                                         <td><?php print $dados['data_venda']; ?></td>
-                                        <td><?php print $dados['valor_total']; ?></td>
+                                        <td><?php print "R$ " . number_format($dados['valor_total'], 2, ',', '.'); ?></td>
                                         <td><?php print $dados['nome_func']; ?></td>
                                         <td><?php print $dados['nome_cliente']; ?></td>
                                     </tr>
@@ -204,7 +204,7 @@ if ($data_final != '' and $data_inicial != '') {
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Unico</div>
+                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Único</div>
                                         <div class="h5 mb-0 font-weight-bold ">
                                             <?php print $qtd_clientes_unicos ?>
                                         </div>

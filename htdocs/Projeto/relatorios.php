@@ -29,12 +29,13 @@ include "includes/cabecalho.php";
                     <div class="row">
 
                         <ul class="list-group list-group-flush list-group-numbered">
-                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_func')">Relatórios de vendas por funcionários</a></li>
-                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_mes')">Relatórios de vendas mensais</a></li>
                             <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_dia')">Relatórios de vendas diarias</a></li>
                             <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_semana')">Relatórios de vendas semanais</a></li>
-                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_produto')">Relatórios de vendas por produto</a></li>
+                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_mes')">Relatórios de vendas mensais</a></li>
                             <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_datas')">Relatórios de vendas entre datas</a></li>
+                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_func')">Relatórios de vendas por funcionários</a></li>
+                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_cliente')">Relatórios de vendas por cliente</a></li>
+                            <li class="list-group-item"><a class="link" onclick="enviaRelatorio('venda_produto')">Relatórios de vendas por produto</a></li>  
                         </ul>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ $query_produto_mes = "SELECT
 $result_produto_mes = mysqli_query($conect, $query_produto_mes);
 
     ?>
-<main class= "esconde">
+<main>
     <div class="container-fluid">
         <br>
         <div class="col-md-12 listagem-produtos">
@@ -52,7 +52,7 @@ $result_produto_mes = mysqli_query($conect, $query_produto_mes);
                                     <tr>
                                         <th scope="row"><?php print $dados['id']; ?></th>
                                         <td><?php print $dados['data_venda']; ?></td>
-                                        <td><?php print $dados['valor_total']; ?></td>
+                                        <td><?php print "R$ " . number_format($dados['valor_total'], 2, ',', '.'); ?></td>
                                         <td><?php print $dados['nome_func']; ?></td>
                                         <td><?php print $dados['nome_cliente']; ?></td>
                                     </tr>
@@ -157,7 +157,7 @@ $result_produto_mes = mysqli_query($conect, $query_produto_mes);
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Unico</div>
+                                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Vendas para Cliente Único</div>
                                         <div class="h5 mb-0 font-weight-bold ">
                                             <?php print $qtd_clientes_unicos ?>
                                         </div>

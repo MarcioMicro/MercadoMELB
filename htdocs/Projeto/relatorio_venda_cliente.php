@@ -5,9 +5,10 @@ session_start();
 
 include "includes/conect.php";
 
-$id_func = $_POST['id_func'];
-if ($id_func != '') {
-    $query_vendas_func = "SELECT 
+$id_cliente = $_POST['id_cliente'];
+
+if ($id_cliente != '') {
+    $query_vendas_cliente = "SELECT 
                                 vendas.*, funcionarios.nome AS nome_func,clientes.nome AS nome_cliente
                             from 
                                 vendas 
@@ -20,8 +21,8 @@ if ($id_func != '') {
                             ON
                                 clientes.id = vendas.id_clientes 
                             WHERE 
-                               id_funcionarios = $id_func";
-    $result_vendas_func = mysqli_query($conect, $query_vendas_func);
+                               id_clientes = $id_cliente";
+    $result_vendas_cliente = mysqli_query($conect, $query_vendas_cliente);
 }
 ?>
 
@@ -34,22 +35,22 @@ if ($id_func != '') {
             <br>
             <div class="card">
                 <div class="card-header">
-                    Relatório de vendas por funcionários.
+                    Relatório de vendas por Cliente.
                 </div>
                 <div class="card-body">
                     <div class="row">
                         
                         <form id="form_relatorio" name="form_relatorio" method="post" action="#">
 
-                            <label for="func" class="form-label">Funcionário</label>
-                            <select class="form-select" id="id_func" name="id_func">
+                            <label for="cliente" class="form-label">Cliente</label>
+                            <select class="form-select" id="id_cliente" name="id_cliente">
                                 <option value="">Selecione</option>
                                 <?php
-                                $query_funcionario = "SELECT nome,id FROM funcionarios";
-                                $result_funcionario = mysqli_query($conect, $query_funcionario);
+                                $query_cliente = "SELECT nome,id FROM clientes";
+                                $result_cliente = mysqli_query($conect, $query_cliente);
 
-                                while ($dados_funcionario = mysqli_fetch_array($result_funcionario)) { ?>
-                                    <option value="<?php print $dados_funcionario['id'] ?>"><?php print $dados_funcionario['nome'] ?></option>
+                                while ($dados_cliente = mysqli_fetch_array($result_cliente)) { ?>
+                                    <option value="<?php print $dados_cliente['id'] ?>"><?php print $dados_cliente['nome'] ?></option>
 
                                 <?php
                                 }
@@ -62,7 +63,7 @@ if ($id_func != '') {
 
                                     <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='relatorios.php'">Cancelar</button>
                                 </div>
-                                <input type="hidden" name="nome_relatorio" id="nome_relatorio" value="venda_func">
+                                <input type="hidden" name="nome_relatorio" id="nome_relatorio" value="venda_cliente">
                                 
                         </form>
                     </div>
@@ -72,14 +73,14 @@ if ($id_func != '') {
     </div>
 </main>
 
-<?php if ($id_func != '') { ?>
+<?php if ($id_cliente != '') { ?>
     <main>
         <div class="container-fluid">
             <div class="col-md-12 listagem-produtos">
                 <br>
                 <div class="card">
                     <div class="card-header">
-                        Relatório de vendas por funcionários.
+                        Relatório de vendas por cliente.
                     </div>
                     <div class="card-body">
                         <table class="table table table-bordered table-hover" id="venda">
@@ -94,7 +95,7 @@ if ($id_func != '') {
                             </thead>
                             <tbody>
                                 <?php
-                                while ($dados = mysqli_fetch_array($result_vendas_func)) {
+                                while ($dados = mysqli_fetch_array($result_vendas_cliente)) {
                                 ?>
                                     <tr>
                                         <th scope="row"><?php print $dados['id']; ?></th>
@@ -121,7 +122,7 @@ if ($id_func != '') {
                                                 from 
                                                     vendas
                                                 WHERE 
-                                                    id_funcionarios = $id_func";
+                                                    id_clientes = $id_cliente";
 
                         $result_cont_vendas = mysqli_query($conect, $query_qtd_vendas);
                         $qtd_vendas = mysqli_fetch_array($result_cont_vendas);
@@ -152,7 +153,7 @@ if ($id_func != '') {
                                                 from 
                                                     vendas
                                                 WHERE 
-                                                    id_funcionarios = $id_func";
+                                                    id_clientes = $id_cliente";
 
                         $result_valor_vendas = mysqli_query($conect, $query_valor_vendas);
                         while ($dados_venda = mysqli_fetch_array($result_valor_vendas)) {
@@ -189,7 +190,7 @@ if ($id_func != '') {
                                                 from 
                                                     vendas 
                                                 WHERE 
-                                                    id_funcionarios = $id_func    
+                                                    id_clientes = $id_cliente    
                                                 GROUP BY 
                                                     id_clientes";
 
@@ -222,7 +223,7 @@ if ($id_func != '') {
                                                 FROM 
                                                     vendas
                                                 WHERE 
-                                                    id_funcionarios = $id_func";
+                                                    id_clientes = $id_cliente";
 
                         $result_venda_max = mysqli_query($conect, $query_venda_max);
                         $venda_mais_cara = mysqli_fetch_array($result_venda_max);
@@ -253,7 +254,7 @@ if ($id_func != '') {
                                                 FROM 
                                                     vendas
                                                 WHERE 
-                                                    id_funcionarios = $id_func";
+                                                    id_clientes = $id_cliente";
 
                         $result_venda_min = mysqli_query($conect, $query_venda_min);
                         $venda_menos_cara = mysqli_fetch_array($result_venda_min);

@@ -32,6 +32,10 @@ if ($relatorio == 'venda_dia') {
 
     include("relatorio_venda_datas.php");
     
+}else if ($relatorio == 'venda_cliente') {
+
+    include("relatorio_venda_cliente.php");
+    
 }
 
 

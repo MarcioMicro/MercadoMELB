@@ -8,7 +8,7 @@ include "includes/conect.php";
 
 $func = $_POST['id_func'];
 
-print $func;
+
 $query_func = "SELECT
                 funcionarios.id, 
                 funcionarios.nome, 
@@ -25,7 +25,7 @@ $query_func = "SELECT
                 niveis_acesso.id_func = funcionarios.id
                 WHERE
                 funcionarios.id = $func";
-                print $query_func;
+
 
 $resultado_func = mysqli_query($conect, $query_func);
 $dados = mysqli_fetch_array($resultado_func)

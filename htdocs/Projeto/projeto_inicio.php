@@ -1,3 +1,4 @@
+<title>Mercado MELB | Início</title>
 <?php
 session_name('mercado');
 session_start();
@@ -51,7 +52,7 @@ include "includes/cabecalho.php"; ?>
         $sql_query_produtos = mysqli_query($conect, $query);
         $num_result = mysqli_num_rows($sql_query_produtos);
         ?>
-        <table class="table table table-bordered table-hover" id="dados">
+        <table class="table table table-bordered table-hover" id="dados_func">
           <thead>
             <tr>
               <th scope="col">Id</th>
@@ -78,9 +79,9 @@ include "includes/cabecalho.php"; ?>
                   <td><?php print $dados['nome']; ?></td>
                   <td><?php print $dados['cargo']; ?></td>
                   <td><?php print $dados['departamento']; ?></td>
-                  <td><?php print $dados['salario']; ?></td>
-                  <td><?php print $dados['data_admissao']; ?></td>
-                  <td><?php print $dados['data_nascimento']; ?></td>
+                  <td>R$ <?php print str_replace(".", ",", $dados['salario']); ?></td>
+                  <td><?php print date("d/m/Y", strtotime($dados['data_admissao'])); ?></td>
+                  <td><?php print  date("d/m/Y", strtotime($dados['data_nascimento'])); ?></td>
                 </tr>
             <?php
               }
@@ -328,4 +329,48 @@ $yValuesJSON = json_encode($yValues);
       });
     }
   };
+</script>
+
+
+<script>
+    $('#dados_func').DataTable({
+        "language": {
+            "sProcessing": "Processando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "Não foram encontrados resultados",
+            "sEmptyTable": "Sem dados disponíveis nesta tabela",
+            "sInfo": "Mostrando registros de _START_ a _END_ em um total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros de 0 a 0 de um total de 0 registros",
+            "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Carregando...",
+            "oPaginate": {
+                "sFirst": "Primeiro",
+                "sLast": "Último",
+                "sNext": "Seguinte",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar de forma crescente",
+                "sSortDescending": ": Ordenar de forma decrescente"
+            }
+        },
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+                "type": "date-eu"
+            },
+            {
+                "type": "date-eu"
+            }
+
+        ]
+    });
 </script>

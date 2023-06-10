@@ -1,3 +1,4 @@
+<title>Mercado MELB | Nova Venda</title>
 <?php
 
 session_name('mercado');

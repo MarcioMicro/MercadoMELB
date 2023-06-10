@@ -1,3 +1,4 @@
+<title>Mercado MELB | Relatórios</title>
 <?php
 
 session_name('mercado');

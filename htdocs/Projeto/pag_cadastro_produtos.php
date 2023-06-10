@@ -1,3 +1,4 @@
+<title>Mercado MELB | Cadastro de Produto</title>
 <?php
 
 session_name('mercado');
@@ -81,7 +82,7 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
                             <div class="col-md-12 d-flex justify-content-center">
                                 <button class="btn btn-success btn-lg me-3" type="button" onclick="verifica()">Cadastrar</button>
 
-                                <button class="btn btn-danger btn-lg" onclick = "window.location.href='pag_estoque.php'">Cancelar</button>
+                                <button class="btn btn-danger btn-lg" type="button" onclick = "window.location.href='pag_estoque.php'">Cancelar</button>
                             </div>
                         </div>
                     </div>

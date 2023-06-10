@@ -1,3 +1,4 @@
+<title>Mercado MELB | Cadastro de Funcionário</title>
 <?php
 
 session_name('mercado');

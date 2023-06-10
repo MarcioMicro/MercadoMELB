@@ -1,3 +1,4 @@
+
 <?php
 
 session_name('mercado');
@@ -9,38 +10,38 @@ $relatorio = $_POST['nome_relatorio'];
 
 
 if ($relatorio == 'venda_dia') {
-
+    $nome_relatorio = "Vendas do Dia";
     include("relatorio_venda_dia.php");
 
 } else if ($relatorio == 'venda_semana') {
-
+    $nome_relatorio = "Vendas da Semana";
     include("relatorio_venda_semana.php");
 
 } else if ($relatorio == 'venda_mes') {
-
+    $nome_relatorio = "Vendas do Mês";
     include("relatorio_venda_mes.php");
 
 }else if ($relatorio == 'venda_func') {
-
+    $nome_relatorio = "Vendas do Funcionário";
     include("relatorio_venda_func.php");
     
 }else if ($relatorio == 'venda_produto') {
-
+    $nome_relatorio = "Vendas por Produto";
     include("relatorio_venda_produto.php");
     
 }else if ($relatorio == 'venda_datas') {
-
+    $nome_relatorio = "Vendas entre Datas";
     include("relatorio_venda_datas.php");
     
 }else if ($relatorio == 'venda_cliente') {
-
+    $nome_relatorio = "Vendas por Cliente";
     include("relatorio_venda_cliente.php");
     
 }
 
 
 ?>
-
+<title>Mercado MELB | Relatório - <?php print $nome_relatorio ?></title>
 
 
 

@@ -1,3 +1,4 @@
+<title>Mercado MELB | Estoque</title>
 <?php
 
 session_name('mercado');

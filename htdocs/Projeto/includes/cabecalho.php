@@ -18,7 +18,8 @@
 <script src="js/pt-BR.js"></script>
 <script src="js/jquery.maskMoney.min.js"></script>
 <script src="js/chart.js/chart.umd.js"></script>
-
+<script src="js/date-eu.js"></script>
+<link rel="icon" type="image/x-icon" href="images/logo_melb.png">
 <meta charset="iso-8859-1">
 
 

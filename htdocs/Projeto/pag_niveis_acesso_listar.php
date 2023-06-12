@@ -20,7 +20,9 @@ $query = "SELECT
             INNER JOIN 
                 `funcionarios` 
             ON 
-                niveis_acesso.id_func = funcionarios.id";
+                niveis_acesso.id_func = funcionarios.id
+           WHERE
+                funcionarios.id != 1000";
 
 $resultados = mysqli_query($conect, $query);
 $linhas = mysqli_num_rows($resultados);

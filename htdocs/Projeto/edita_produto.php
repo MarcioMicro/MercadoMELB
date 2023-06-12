@@ -123,7 +123,7 @@ $resultado_categorias = mysqli_query($conect, $query_categorias);
 <script>
     $(document).ready(function() {
 
-        $('#preco_produto').mask('000.00');
+      
 
 
         $('input[type=text]').on('focus', function() {

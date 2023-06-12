@@ -52,7 +52,7 @@ $result_produto_semana = mysqli_query($conect, $query_produto_semana);
                                 ?>
                                     <tr>
                                         <th scope="row"><?php print $dados['id']; ?></th>
-                                        <td><?php print $dados['data_venda']; ?></td>
+                                        <td><?php print date("d/m/Y H:i:s", strtotime($dados['data_venda'])); ?></td>
                                         <td><?php print "R$ " . number_format($dados['valor_total'], 2, ',', '.'); ?></td>
                                         <td><?php print $dados['nome_func']; ?></td>
                                         <td><?php print $dados['nome_cliente']; ?></td>

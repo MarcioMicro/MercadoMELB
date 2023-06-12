@@ -204,5 +204,14 @@ $dados = mysqli_fetch_array($sql_query_acesso)
             decimal: ',',
             affixesStay: false
           });
+
+          $('#preco_produto').maskMoney({
+            prefix: 'R$ ',
+            allowNegative: false,
+            thousands: '.',
+            decimal: ',',
+            affixesStay: false
+          });
+          
         });
       </script>
